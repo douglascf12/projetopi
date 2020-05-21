@@ -5,10 +5,13 @@
  */
 package view;
 
+import Controller.ClienteController;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import utils.Validador;
-
+import DAO.ClienteDAO;
+import java.sql.Date;
 /**
  *
  * @author User
@@ -383,15 +386,47 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPsqNomeCliActionPerformed
 
     private void btnCadastCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastCliActionPerformed
-        boolean cpfValido=Validador.ValidaCPF(txtCpfCli);
-        if(cpfValido){
-               txtCpfCli.setBackground(Color.white);
-        }else{
+
+        //Validando Dados
+        boolean cpfValido = Validador.ValidaCPF(txtCpfCli);
+        if (cpfValido) {
+            txtCpfCli.setBackground(Color.white);
+        } else {
             JOptionPane.showMessageDialog(this, "CPF informado é inválido");
             txtCpfCli.setBackground(Color.red);
         }
         Validador.ValidaNomes(txtNomeCli);
+        
+       // Date data = new Date();
+        
+
+   // String novaData = formatador.format(jDateChooser1);
+
+    String cpf = (this.txtCpfCli.getText());
+    String nome = (this.txtNomeCli.getText());
+    Date data = (Date) jDateChooser1.getDate();
+    SimpleDateFormat formatador = new SimpleDateFormat("yyyy/MM/dd");
+    String dataNascimento = formatador.format(data);
+    JOptionPane.showMessageDialog(this, dataNascimento);
+    String telefone = (this.txtTelCli.getText());
+    String endereco = (this.txtEndCli.getText());
+   //String sexo = (this.txtTelCli.getText());
+   // String estadoCivil = (this.jComboBox1.; 
+    
+    //Chamando Controller
+    
+    boolean retorno = ClienteController.Cadastrar(cpf, nome, dataNascimento, telefone, endereco);
+    if(retorno == true){
+           JOptionPane.showMessageDialog(null, "Cliente cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    
+        else{
+        JOptionPane.showMessageDialog(null, "Falha ao cadastrar cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnCadastCliActionPerformed
+   
+
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
