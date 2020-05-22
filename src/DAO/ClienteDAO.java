@@ -17,6 +17,10 @@ import utils.ConexaoMySql;
  * @author andre
  */
 public class ClienteDAO {
+
+    public static boolean Excluir(Cliente objCliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     PreparedStatement addSQL = null;
     private static Connection conexao;
     
@@ -74,7 +78,7 @@ public class ClienteDAO {
             
             conexao = ConexaoMySql.getConexaoMySQL();
             
-            addSQL = conexao.prepareStatement("INSERT INTO cliente (cpf,nome,dataNascimento,telefone,endereco,sexo,estadoCivil) VALUES( ?, ?, ?,?,?,?,?);",
+            addSQL = conexao.prepareStatement("INSERT INTO cliente (cpf,nome,dataNascimento,telefone,endereco) VALUES( ?, ?, ?,?,?);",
                     Statement.RETURN_GENERATED_KEYS);
             
             addSQL.setString(1, c.getCPF());
@@ -82,8 +86,7 @@ public class ClienteDAO {
             addSQL.setString(3, c.getDataNascimento());
             addSQL.setString(4, c.getTelefone());
             addSQL.setString(5, c.getEndereco());
-            addSQL.setString(6, c.getSexo());
-            addSQL.setString(7, c.getEstadoCivil());
+            
             
              int linhasAfetadas = addSQL.executeUpdate();
                         
@@ -111,7 +114,7 @@ public class ClienteDAO {
         return retorno;
     }
      
-        public static boolean Excluir(String cpf) {
+        public static boolean Excluir(String nome) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement addSQL = null;
@@ -119,9 +122,9 @@ public class ClienteDAO {
         try {
            conexao = ConexaoMySql.getConexaoMySQL();
 
-            addSQL = conexao.prepareStatement("DELETE FROM cliente WHERE cpf = ?");
+            addSQL = conexao.prepareStatement("DELETE FROM cliente WHERE nome = ?");
 
-            addSQL.setString(1,cpf);
+            addSQL.setString(2,nome);
 
             int linhasAfetadas = addSQL.executeUpdate();
 

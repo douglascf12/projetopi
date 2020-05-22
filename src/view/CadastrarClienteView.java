@@ -374,11 +374,40 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtalCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtalCliActionPerformed
-        // TODO add your handling code here:
+    
+    String cpf = (this.txtCpfCli.getText());
+    String nome = (this.txtNomeCli.getText());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String dataNascimento = sdf.format(jDateChooser1.getDate());
+    JOptionPane.showMessageDialog(this, dataNascimento);
+    String telefone = (this.txtTelCli.getText());
+    String endereco = (this.txtEndCli.getText());  
+    
+    //Chamando Controller
+    
+    boolean retorno = ClienteController.Atualizar(cpf, nome, dataNascimento, telefone, endereco);
+    if(retorno == true){
+           JOptionPane.showMessageDialog(null, "Cliente atualizado com Sucesso", "Atualização realizada", JOptionPane.INFORMATION_MESSAGE);
+    }    
+      else{
+        JOptionPane.showMessageDialog(null, "Falha ao atualizar cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+    }
+    
     }//GEN-LAST:event_btnAtalCliActionPerformed
 
     private void btnExcCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcCliActionPerformed
-        // TODO add your handling code here:
+       String nome = (this.txtNomeCli.getText());
+       
+        //Chamando Controller
+       boolean retorno = ClienteController.Excluir(nome);
+    if(retorno == true){
+           JOptionPane.showMessageDialog(null, "Cliente excluido com Sucesso", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
+    }    
+        else{
+        JOptionPane.showMessageDialog(null, "Falha ao excluir cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+    }
+    
+       
     }//GEN-LAST:event_btnExcCliActionPerformed
 
     private void txtPsqNomeCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPsqNomeCliActionPerformed
@@ -397,21 +426,16 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         }
         Validador.ValidaNomes(txtNomeCli);
         
-       // Date data = new Date();
-        
-
-   // String novaData = formatador.format(jDateChooser1);
+   
 
     String cpf = (this.txtCpfCli.getText());
     String nome = (this.txtNomeCli.getText());
-    Date data = (Date) jDateChooser1.getDate();
-    SimpleDateFormat formatador = new SimpleDateFormat("yyyy/MM/dd");
-    String dataNascimento = formatador.format(data);
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String dataNascimento = sdf.format(jDateChooser1.getDate());
     JOptionPane.showMessageDialog(this, dataNascimento);
     String telefone = (this.txtTelCli.getText());
     String endereco = (this.txtEndCli.getText());
-   //String sexo = (this.txtTelCli.getText());
-   // String estadoCivil = (this.jComboBox1.; 
+  
     
     //Chamando Controller
     
