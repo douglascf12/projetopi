@@ -308,7 +308,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         Validador.ValidarDecimais(txtValor);
         Validador.ValidarNumeros(txtQuantidadeEstoque);
     }//GEN-LAST:event_btnCadProActionPerformed
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Validador.ValidarNumeros(txtCodPsq);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -17,13 +17,15 @@ import javax.swing.JTextField;
  */
 public class Validador {
 
-    public static void ValidaNomes(JTextField nomeTxt) {
+    public static boolean ValidaNomes(JTextField nomeTxt) {
 
         if (nomeTxt.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Verifique se o campo " + nomeTxt.getName() + " está preenchido.");
             nomeTxt.setBackground(Color.red);
+            return false;
         } else {
             nomeTxt.setBackground(Color.white);
+            return true;
         }
     }
 
@@ -121,6 +123,10 @@ public class Validador {
         } catch (InputMismatchException erro) {
             return (false);
         }
+    }
+    public static String getCpfSomenteNumeros(JFormattedTextField pCpf){
+        String cpf = pCpf.getText().replace(".", "").replace("-", "");
+        return cpf;
     }
 
     

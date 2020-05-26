@@ -10,8 +10,11 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import utils.Validador;
-import DAO.ClienteDAO;
-import java.sql.Date;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.Cliente;
+import view.CadastrarClienteView;
+
 /**
  *
  * @author User
@@ -21,8 +24,13 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     /**
      * Creates new form cliente
      */
+    Cliente objCliente;
+    public String modoTela = "Criação";
+
     public CadastrarClienteView() {
         initComponents();
+        CarregaTabela();
+
     }
 
     /**
@@ -35,35 +43,31 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtPsqNomeCli = new javax.swing.JTextField();
         bntPsqCli = new javax.swing.JButton();
         tabCli = new javax.swing.JScrollPane();
-        tabPsq = new javax.swing.JTable();
+        tblPesquisar = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtNomeCli = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        txtNomeCliente = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtEndCli = new javax.swing.JTextField();
-        txtTelCli = new javax.swing.JFormattedTextField();
+        txtEnderecoCliente = new javax.swing.JTextField();
+        txtTelefoneCliente = new javax.swing.JFormattedTextField();
         txtCpfCli = new javax.swing.JFormattedTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        btnCadastCli = new javax.swing.JButton();
-        btnSairCli = new javax.swing.JButton();
+        btnCadastrarCliente = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        btnAtalCli = new javax.swing.JButton();
-        btnExcCli = new javax.swing.JButton();
+        btnAtualizarCliente = new javax.swing.JButton();
+        btnExcluirCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,15 +90,15 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             }
         });
 
-        tabPsq.setModel(new javax.swing.table.DefaultTableModel(
+        tblPesquisar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CPF", "Nome", "Telefone", "Endereço"
+                "CPF", "Nome", "Data de Nasc.", "Telefone", "Endereço"
             }
         ));
-        tabCli.setViewportView(tabPsq);
+        tabCli.setViewportView(tblPesquisar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,16 +106,13 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabCli)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPsqNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(bntPsqCli, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(7, 7, 7))
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtPsqNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(bntPsqCli, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
+            .addComponent(tabCli, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,12 +138,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Telefone:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("Sexo:");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("Estado Civil: ");
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Data de Nasc.");
 
@@ -150,7 +145,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         jLabel10.setText("Endereço:");
 
         try {
-            txtTelCli.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+            txtTelefoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -160,26 +155,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton1.setText("M");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton2.setText("F");
-        jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioButton2MouseClicked(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Casado", "Solteiro", "Divorciado", "Viúvo" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -191,25 +166,16 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCpfCli, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelCli, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEndCli, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +187,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -232,36 +198,29 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtTelCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtEndCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                    .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btnCadastCli.setText("Cadastrar");
-        btnCadastCli.setBorder(null);
-        btnCadastCli.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarCliente.setText("Cadastrar");
+        btnCadastrarCliente.setBorder(null);
+        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastCliActionPerformed(evt);
+                btnCadastrarClienteActionPerformed(evt);
             }
         });
 
-        btnSairCli.setText("Sair");
-        btnSairCli.setBorder(null);
-        btnSairCli.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setText("Sair");
+        btnSair.setBorder(null);
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairCliActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
@@ -272,43 +231,43 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadastCli, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSairCli, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCadastCli, btnSairCli});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCadastrarCliente, btnSair});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(btnCadastCli, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(btnSairCli, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCadastCli, btnSairCli});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCadastrarCliente, btnSair});
 
         jLabel5.setFont(new java.awt.Font("Viner Hand ITC", 1, 11)); // NOI18N
         jLabel5.setText("TLG Admin");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btnAtalCli.setText("Atualizar");
-        btnAtalCli.setBorder(null);
-        btnAtalCli.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizarCliente.setText("Atualizar");
+        btnAtualizarCliente.setBorder(null);
+        btnAtualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtalCliActionPerformed(evt);
+                btnAtualizarClienteActionPerformed(evt);
             }
         });
 
-        btnExcCli.setText("Excluir");
-        btnExcCli.setBorder(null);
-        btnExcCli.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluirCliente.setText("Excluir");
+        btnExcluirCliente.setBorder(null);
+        btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcCliActionPerformed(evt);
+                btnExcluirClienteActionPerformed(evt);
             }
         });
 
@@ -319,17 +278,17 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnExcCli, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtalCli, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(btnAtalCli, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAtualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(btnExcCli, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -342,14 +301,17 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,100 +335,152 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAtalCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtalCliActionPerformed
-    
-    String cpf = (this.txtCpfCli.getText());
-    String nome = (this.txtNomeCli.getText());
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String dataNascimento = sdf.format(jDateChooser1.getDate());
-    JOptionPane.showMessageDialog(this, dataNascimento);
-    String telefone = (this.txtTelCli.getText());
-    String endereco = (this.txtEndCli.getText());  
-    
-    //Chamando Controller
-    
-    boolean retorno = ClienteController.Atualizar(cpf, nome, dataNascimento, telefone, endereco);
-    if(retorno == true){
-           JOptionPane.showMessageDialog(null, "Cliente atualizado com Sucesso", "Atualização realizada", JOptionPane.INFORMATION_MESSAGE);
-    }    
-      else{
-        JOptionPane.showMessageDialog(null, "Falha ao atualizar cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
-    }
-    
-    }//GEN-LAST:event_btnAtalCliActionPerformed
+    private void btnAtualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarClienteActionPerformed
 
-    private void btnExcCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcCliActionPerformed
-       String nome = (this.txtNomeCli.getText());
-       
-        //Chamando Controller
-       boolean retorno = ClienteController.Excluir(nome);
-    if(retorno == true){
-           JOptionPane.showMessageDialog(null, "Cliente excluido com Sucesso", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
-    }    
-        else{
-        JOptionPane.showMessageDialog(null, "Falha ao excluir cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
-    }
-    
-       
-    }//GEN-LAST:event_btnExcCliActionPerformed
+        //Resgato as informações da linha para passar a tela de Cadastro/Alteração
+        if (tblPesquisar.getRowCount() > 0) {
+            //Resgato o número da linha pelo JTable
+            int numeroLinha = tblPesquisar.getSelectedRow();
+
+            String cpf = tblPesquisar.getModel().getValueAt(numeroLinha, 0).toString();
+            String nome = tblPesquisar.getModel().getValueAt(numeroLinha, 1).toString();
+            String dataNascimento = tblPesquisar.getModel().getValueAt(numeroLinha, 2).toString();
+            String telefone = tblPesquisar.getModel().getValueAt(numeroLinha, 3).toString();
+            String endereco = tblPesquisar.getModel().getValueAt(numeroLinha, 4).toString();
+            txtCpfCli.setText(cpf);
+            txtNomeCliente.setText(nome);
+            jDateChooser1.setDateFormatString(dataNascimento);
+            txtTelefoneCliente.setText(telefone);
+            txtEnderecoCliente.setText(endereco);
+            modoTela = "Alteração";
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um cliente da tabela!");
+        }
+
+    }//GEN-LAST:event_btnAtualizarClienteActionPerformed
+
+    private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
+        String nome = (this.txtNomeCliente.getText());
+
+        if (tblPesquisar.getRowCount() > 0) {
+            int numeroLinha = tblPesquisar.getSelectedRow();
+            String cpf = tblPesquisar.getModel().getValueAt(numeroLinha, 0).toString();
+            //Chamando Controller
+            boolean retorno = ClienteController.Excluir(cpf);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(null, "Cliente excluido com Sucesso", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
+                CarregaTabela();
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha ao excluir cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um cliente da tabela para excluir!");
+        }
+
+
+    }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
     private void txtPsqNomeCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPsqNomeCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPsqNomeCliActionPerformed
 
-    private void btnCadastCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastCliActionPerformed
+    private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+        if (modoTela == "Criação") {
+            //Verifica se o CPF informado é válido para prosseguir com o cadastramento
+            boolean cpfValido = Validador.ValidaCPF(txtCpfCli);
+            if (cpfValido) {
+                txtCpfCli.setBackground(Color.white);
+                if (Validador.ValidaNomes(txtNomeCliente)) {
+                    //Capturando Informações Da View
+                    String cpf = Validador.getCpfSomenteNumeros(txtCpfCli);
+                    String nome = (txtNomeCliente.getText());
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataNascimento = sdf.format(jDateChooser1.getDate());
+                    String telefone = (txtTelefoneCliente.getText());
+                    String endereco = (txtEnderecoCliente.getText());
 
-        //Validando Dados
-        boolean cpfValido = Validador.ValidaCPF(txtCpfCli);
-        if (cpfValido) {
-            txtCpfCli.setBackground(Color.white);
+                    //Chamando Controller
+                    boolean retorno = ClienteController.Cadastrar(cpf, nome, dataNascimento, telefone, endereco);
+                    if (retorno == true) {
+                        JOptionPane.showMessageDialog(null, "Cliente cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
+                        CarregaTabela();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Falha ao cadastrar cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "CPF informado é inválido");
+                txtCpfCli.setBackground(Color.red);
+            }
+
         } else {
-            JOptionPane.showMessageDialog(this, "CPF informado é inválido");
-            txtCpfCli.setBackground(Color.red);
+            String cpf = Validador.getCpfSomenteNumeros(txtCpfCli);
+            String nome = (txtNomeCliente.getText());
+            //String dataNascimento = jDateChooser1.getDateFormatString();
+            String telefone = (txtTelefoneCliente.getText());
+            String endereco = (txtEnderecoCliente.getText());
+
+            //Passo as informações da View para Controller
+            try {
+                boolean retorno = ClienteController.Atualizar(cpf, nome/*, dataNascimento*/, telefone, endereco);
+                System.out.println(retorno);
+                JOptionPane.showMessageDialog(this, "Cliente alterado com sucesso!", "Cliente Alterado", JOptionPane.INFORMATION_MESSAGE);
+                modoTela = "Criação";
+                CarregaTabela();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Falha ao gravar no banco de dados\n" + e.getMessage(),
+                        "Aviso de Falha", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
-        Validador.ValidaNomes(txtNomeCli);
-        
-   
+        txtCpfCli.setText(null);
+        txtNomeCliente.setText(null);
+        //jDateChooser1.setDate(null);
+        txtTelefoneCliente.setText(null);
+        txtEnderecoCliente.setText(null);
+        modoTela = "Criação";
+    }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
-    String cpf = (this.txtCpfCli.getText());
-    String nome = (this.txtNomeCli.getText());
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String dataNascimento = sdf.format(jDateChooser1.getDate());
-    JOptionPane.showMessageDialog(this, dataNascimento);
-    String telefone = (this.txtTelCli.getText());
-    String endereco = (this.txtEndCli.getText());
-  
-    
-    //Chamando Controller
-    
-    boolean retorno = ClienteController.Cadastrar(cpf, nome, dataNascimento, telefone, endereco);
-    if(retorno == true){
-           JOptionPane.showMessageDialog(null, "Cliente cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
+    private void CarregaTabela() {
+
+        ArrayList<String[]> listaCliente;
+        listaCliente = ClienteController.ConsultarCliente(txtPsqNomeCli.getText());
+
+        DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
+        modelo.setRowCount(0);
+
+        for (String[] cliente : listaCliente) {
+            modelo.addRow(new String[]{
+                cliente[0],
+                cliente[1],
+                cliente[2],
+                cliente[3],
+                cliente[4],});
+        }
     }
-
-    
-        else{
-        JOptionPane.showMessageDialog(null, "Falha ao cadastrar cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_btnCadastCliActionPerformed
-   
-
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2MouseClicked
-
     private void bntPsqCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPsqCliActionPerformed
         Validador.ValidaNomes(txtPsqNomeCli);
+        ArrayList<String[]> listaCliente;
+        listaCliente = ClienteController.ConsultarCliente(txtPsqNomeCli.getText());
+
+        DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
+        modelo.setRowCount(0);
+
+        for (String[] cliente : listaCliente) {
+            modelo.addRow(new String[]{
+                cliente[0],
+                cliente[1],
+                cliente[2],
+                cliente[3],
+                cliente[4],});
+        }
+
     }//GEN-LAST:event_bntPsqCliActionPerformed
 
-    private void btnSairCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairCliActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
-    }//GEN-LAST:event_btnSairCliActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,16 +496,24 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarClienteView.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -508,12 +530,11 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntPsqCli;
-    private javax.swing.JButton btnAtalCli;
-    private javax.swing.JButton btnCadastCli;
-    private javax.swing.JButton btnExcCli;
-    private javax.swing.JButton btnSairCli;
+    private javax.swing.JButton btnAtualizarCliente;
+    private javax.swing.JButton btnCadastrarCliente;
+    private javax.swing.JButton btnExcluirCliente;
+    private javax.swing.JButton btnSair;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -521,21 +542,18 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane tabCli;
-    private javax.swing.JTable tabPsq;
+    private javax.swing.JTable tblPesquisar;
     private javax.swing.JFormattedTextField txtCpfCli;
-    private javax.swing.JTextField txtEndCli;
-    private javax.swing.JTextField txtNomeCli;
+    private javax.swing.JTextField txtEnderecoCliente;
+    private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtPsqNomeCli;
-    private javax.swing.JFormattedTextField txtTelCli;
+    private javax.swing.JFormattedTextField txtTelefoneCliente;
     // End of variables declaration//GEN-END:variables
 }
