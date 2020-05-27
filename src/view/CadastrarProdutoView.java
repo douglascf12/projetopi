@@ -11,7 +11,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
     Produto objProduto;
     public String modoTela = "Criação";
-    
+
     public CadastrarProdutoView() {
         initComponents();
         CarregaTabela();
@@ -226,7 +226,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Cadastrar/Atualizar");
         btnCadastrar.setBorder(null);
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +234,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             }
         });
 
-        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setText("Editar");
         btnAtualizar.setBorder(null);
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,13 +263,17 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSair)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnAtualizar)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluir))
                 .addGap(32, 32, 32))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAtualizar)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtualizar, btnCadastrar, btnExcluir, btnSair});
@@ -280,12 +284,12 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAtualizar)
+                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnExcluir)
                 .addGap(18, 18, 18)
                 .addComponent(btnSair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAtualizar, btnCadastrar, btnExcluir, btnSair});
@@ -300,7 +304,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(35, 35, 35)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -331,31 +335,44 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQtdEstoqueActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
+
+        boolean r1 = Validador.ValidaNomes(txtNome);
+        boolean r2 = Validador.ValidarDecimais(txtValorUnit);
+        boolean r3 = Validador.ValidarNumeros(txtQtdEstoque);
+        boolean r4 = Validador.ValidaComboBox(jcbSetor);
+
         if (modoTela == "Criação") {
-            int codigo = Integer.parseInt(txtCodigo.getText());
-            String nome = txtNome.getText();
-            String descricao = txtDescricao.getText();
-            double valorUnit = Double.parseDouble(txtValorUnit.getText());
-            int qtdEstoque = Integer.parseInt(txtQtdEstoque.getText());
-            String setor = (String)jcbSetor.getSelectedItem();
-            
-            boolean retorno = ProdutoController.Cadastrar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
-            
-            if(retorno == true) {
-                JOptionPane.showMessageDialog(null, "Produto cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
-                CarregaTabela();
-            } else {
-                JOptionPane.showMessageDialog(null, "Falha ao cadastrar produto!", "Falha", JOptionPane.ERROR_MESSAGE);
+            if (r1 && r2 && r3 && r4) {
+                try {
+
+                    int codigo = Integer.parseInt(txtCodigo.getText());
+                    String nome = txtNome.getText();
+                    String descricao = txtDescricao.getText();
+                    double valorUnit = Double.parseDouble(txtValorUnit.getText());
+                    int qtdEstoque = Integer.parseInt(txtQtdEstoque.getText());
+                    String setor = (String) jcbSetor.getSelectedItem();
+
+                    boolean retorno = ProdutoController.Cadastrar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
+
+                    if (retorno == true) {
+                        JOptionPane.showMessageDialog(null, "Produto cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
+                        CarregaTabela();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Falha ao cadastrar produto!", "Falha", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Falha ao cadastrar produto!", "Falha", JOptionPane.ERROR_MESSAGE);
+                }
             }
+
         } else {
             int codigo = Integer.parseInt(txtCodigo.getText());
             String nome = txtNome.getText();
             String descricao = txtDescricao.getText();
             double valorUnit = Double.parseDouble(txtValorUnit.getText());
             int qtdEstoque = Integer.parseInt(txtQtdEstoque.getText());
-            String setor = (String)jcbSetor.getSelectedItem();
-            
+            String setor = (String) jcbSetor.getSelectedItem();
+
             //Passo as informações da View para Controller
             try {
                 boolean retorno = ProdutoController.Atualizar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
@@ -368,7 +385,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                         "Aviso de Falha", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
+
         //após cadastrar limpa os campos
         txtCodigo.setText(null);
         txtNome.setText(null);
@@ -378,12 +395,12 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jcbSetor.setSelectedIndex(0);
         modoTela = "Criação";
     }//GEN-LAST:event_btnCadastrarActionPerformed
-    
+
     private void CarregaTabela() {
         ArrayList<String[]> listaProduto;
         listaProduto = ProdutoController.ConsultarProduto(txtPesquisaCodigo.getText());
 
-        DefaultTableModel modelo = (DefaultTableModel)tblPesquisarPro.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblPesquisarPro.getModel();
         modelo.setRowCount(0);
 
         for (String[] produto : listaProduto) {
@@ -396,14 +413,14 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 produto[5],});
         }
     }
-    
+
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         //Validador.ValidarNumeros(txtCodPsq);
         Validador.ValidarNumeros(txtPesquisaCodigo);
         ArrayList<String[]> listaProduto;
         listaProduto = ProdutoController.ConsultarProduto(txtPesquisaCodigo.getText());
 
-        DefaultTableModel modelo = (DefaultTableModel)tblPesquisarPro.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblPesquisarPro.getModel();
         modelo.setRowCount(0);
 
         for (String[] produto : listaProduto) {
@@ -417,7 +434,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
@@ -437,7 +454,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             txtValorUnit.setText(valorUnit);
             txtQtdEstoque.setText(qtdEstoque);
             jcbSetor.setSelectedItem(setor);
-            
+
             modoTela = "Alteração";
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela!");
@@ -452,7 +469,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             int codigo = Integer.parseInt(tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString());
             //Chamando Controller
             boolean retorno = ProdutoController.Excluir(codigo);
-            if(retorno == true) {
+            if (retorno == true) {
                 JOptionPane.showMessageDialog(null, "Produto excluido com Sucesso", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
                 CarregaTabela();
             } else {

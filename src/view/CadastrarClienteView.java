@@ -146,11 +146,15 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Telefone:");
 
+        txtNomeCliente.setName("Nome"); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Data de Nasc.");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Endereço:");
+
+        txtEnderecoCliente.setName("Endereço"); // NOI18N
 
         try {
             txtTelefoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
@@ -163,6 +167,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCpfCli.setName("CPF"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -394,11 +399,12 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPsqNomeCliActionPerformed
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+        boolean cpfValido = Validador.ValidaCPF(txtCpfCli);
+        boolean nomeValido = Validador.ValidaNomes(txtNomeCliente);
+        boolean enderecoValido = Validador.ValidaNomes(txtEnderecoCliente);
         if (modoTela == "Criação") {
-            //Verifica se o CPF informado é válido para prosseguir com o cadastramento
-            boolean cpfValido = Validador.ValidaCPF(txtCpfCli);
-            if (cpfValido) {
-                txtCpfCli.setBackground(Color.white);
+            if (cpfValido && nomeValido && enderecoValido) {
+                //Verifica se o CPF informado é válido para prosseguir com o cadastramento
                 if (Validador.ValidaNomes(txtNomeCliente)) {
                     //Capturando Informações Da View
                     String cpf = Validador.getCpfSomenteNumeros(txtCpfCli);
@@ -416,12 +422,11 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Falha ao cadastrar cliente!", "Falha", JOptionPane.ERROR_MESSAGE);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(this, "CPF informado é inválido");
+                    txtCpfCli.setBackground(Color.red);
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "CPF informado é inválido");
-                txtCpfCli.setBackground(Color.red);
             }
-
         } else {
             String cpf = Validador.getCpfSomenteNumeros(txtCpfCli);
             String nome = (txtNomeCliente.getText());

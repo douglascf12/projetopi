@@ -7,6 +7,7 @@ package utils;
 
 import java.awt.Color;
 import java.util.InputMismatchException;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -29,37 +30,50 @@ public class Validador {
         }
     }
 
-    public static void ValidarNumeros(JTextField pTxt) {
+    public static boolean ValidarNumeros(JTextField pTxt) {
         try {
             if (pTxt.getText().trim().equals("")) {
                 throw new IllegalArgumentException();
             }
             int numero = Integer.parseInt(pTxt.getText());
             pTxt.setBackground(Color.white);
-
+            return true;
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Falha ao converter o campo " + pTxt.getName() + " em inteiro.");
             pTxt.setBackground(Color.red);
+            return false;
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Digite um valor para o campo " + pTxt.getName());
             pTxt.setBackground(Color.red);
+            return false;
         }
     }
 
-    public static void ValidarDecimais(JTextField decimalTxt) {
+    public static boolean ValidaComboBox(JComboBox txtCombo) {
+        String setor = (String) txtCombo.getSelectedItem();
+        if(setor=="Nenhum"){
+            JOptionPane.showMessageDialog(null, "Selecione o Setor do Produto");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean ValidarDecimais(JTextField decimalTxt) {
         try {
             if (decimalTxt.getText().trim().equals("")) {
                 throw new IllegalArgumentException();
             }
             double numero = Double.parseDouble(decimalTxt.getText());
             decimalTxt.setBackground(Color.white);
-
+            return true;
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Falha ao converter o campo " + decimalTxt.getName() + " em decimal.");
+            JOptionPane.showMessageDialog(null, "Falha ao converter o campo " + decimalTxt.getName() + " em decimal.");            
             decimalTxt.setBackground(Color.red);
+            return false;
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Digite um valor para o campo " + decimalTxt.getName());
             decimalTxt.setBackground(Color.red);
+            return false;
         }
     }
 
@@ -72,6 +86,7 @@ public class Validador {
                 || cpf.equals("66666666666") || cpf.equals("77777777777")
                 || cpf.equals("88888888888") || cpf.equals("99999999999")
                 || (cpf.length() != 11)) {
+            pCpf.setBackground(Color.red);
             return (false);
         }
 
@@ -116,20 +131,21 @@ public class Validador {
 
             // Verifica se os digitos calculados conferem com os digitos informados.
             if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
+                pCpf.setBackground(Color.white);
                 return (true);
             } else {
+                pCpf.setBackground(Color.red);
                 return (false);
             }
         } catch (InputMismatchException erro) {
+            pCpf.setBackground(Color.red);
             return (false);
         }
     }
-    public static String getCpfSomenteNumeros(JFormattedTextField pCpf){
+
+    public static String getCpfSomenteNumeros(JFormattedTextField pCpf) {
         String cpf = pCpf.getText().replace(".", "").replace("-", "");
         return cpf;
     }
 
-    
-
 }
-
