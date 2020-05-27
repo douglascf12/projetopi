@@ -6,12 +6,12 @@ import model.Produto;
 
 public class ProdutoController {
     
-    public static boolean Cadastrar(int codPro, String nomePro, String descricao, double precoUnit, int qtdEstoque, String setor) {
+    public static boolean Cadastrar(int codigo, String nome, String descricao, double valorUnit, int qtdEstoque, String setor) {
         Produto objProduto = new Produto();
-        objProduto.setCodPro(codPro);
-        objProduto.setNomePro(nomePro);
+        objProduto.setCodigo(codigo);
+        objProduto.setNome(nome);
         objProduto.setDescricao(descricao);
-        objProduto.setPrecoUnit(precoUnit);
+        objProduto.setValorUnit(valorUnit);
         objProduto.setQtdEstoque(qtdEstoque);
         objProduto.setSetor(setor);
 
@@ -20,30 +20,30 @@ public class ProdutoController {
         return retorno;
     }
 
-    public static ArrayList<String[]> ConsultarProduto(String codPro) {
+    public static ArrayList<String[]> ConsultarProduto(String codigo) {
         ArrayList<Produto> listaProdutos = new ArrayList<>();
-        listaProdutos = ProdutoDAO.ConsultarProduto(codPro);
+        listaProdutos = ProdutoDAO.ConsultarProduto(codigo);
 
         ArrayList<String[]> retorno = new ArrayList<>();
 
         for(Produto produto : listaProdutos) {
             retorno.add(new String[]{
-                String.valueOf(produto.getCodPro()),
-                String.valueOf(produto.getNomePro()),
+                String.valueOf(produto.getCodigo()),
+                String.valueOf(produto.getNome()),
                 String.valueOf(produto.getDescricao()),
-                String.valueOf(produto.getPrecoUnit()),
+                String.valueOf(produto.getValorUnit()),
                 String.valueOf(produto.getQtdEstoque()),
                 String.valueOf(produto.getSetor()),});
         }
         return retorno;
     }
 
-    public static boolean Atualizar(int codPro, String nomePro, String descricao, double precoUnit, int qtdEstoque, String setor) {
+    public static boolean Atualizar(int codigo, String nome, String descricao, double valorUnit, int qtdEstoque, String setor) {
         Produto objProduto = new Produto();
-        objProduto.setCodPro(codPro);
-        objProduto.setNomePro(nomePro);
+        objProduto.setCodigo(codigo);
+        objProduto.setNome(nome);
         objProduto.setDescricao(descricao);
-        objProduto.setPrecoUnit(precoUnit);
+        objProduto.setValorUnit(valorUnit);
         objProduto.setQtdEstoque(qtdEstoque);
         objProduto.setSetor(setor);
 
@@ -52,8 +52,8 @@ public class ProdutoController {
         return retorno;
     }
     
-    public static boolean Excluir(int codPro) {
-        boolean retorno = ProdutoDAO.Excluir(codPro);
+    public static boolean Excluir(int codigo) {
+        boolean retorno = ProdutoDAO.Excluir(codigo);
         return retorno;
     }
 }

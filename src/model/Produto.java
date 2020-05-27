@@ -2,27 +2,27 @@ package model;
 
 public class Produto {
     
-    private int codPro;
-    private String nomePro;
+    private int codigo;
+    private String nome;
     private String descricao;
-    private double precoUnit;
+    private double valorUnit;
     private int qtdEstoque;
     private String setor;
 
-    public int getCodPro() {
-        return codPro;
+    public int getCodigo() {
+        return codigo;
     }
     
-    public void setCodPro(int codPro) {
-        this.codPro = codPro;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public String getNomePro() {
-        return nomePro;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomePro(String nomePro) {
-        this.nomePro = nomePro;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     public String getDescricao() {
@@ -33,12 +33,12 @@ public class Produto {
         this.descricao = descricao;
     }
     
-    public double getPrecoUnit() {
-        return precoUnit;
+    public double getValorUnit() {
+        return valorUnit;
     }
 
-    public void setPrecoUnit(double precoUnit) {
-        this.precoUnit = precoUnit;
+    public void setValorUnit(double valorUnit) {
+        this.valorUnit = valorUnit;
     }
 
     public int getQtdEstoque() {

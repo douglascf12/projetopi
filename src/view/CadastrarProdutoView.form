@@ -73,9 +73,9 @@
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtCodPsq" min="-2" pref="191" max="-2" attributes="0"/>
+                  <Component id="txtPesquisaCodigo" min="-2" pref="191" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="btnPesquisarPro" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -91,8 +91,8 @@
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodPsq" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnPesquisarPro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPesquisaCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="172" max="32767" attributes="0"/>
@@ -110,7 +110,7 @@
             <Property name="text" type="java.lang.String" value="C&#xf3;digo Produto: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCodPsq">
+        <Component class="javax.swing.JTextField" name="txtPesquisaCodigo">
           <Properties>
             <Property name="name" type="java.lang.String" value="C&#xf3;digo do Produto" noResource="true"/>
           </Properties>
@@ -175,12 +175,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnPesquisarPro">
+        <Component class="javax.swing.JButton" name="btnPesquisar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarProActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -209,12 +209,12 @@
                   </Group>
                   <EmptySpace pref="47" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtValor" min="-2" pref="130" max="-2" attributes="0"/>
-                      <Component id="txtQuantidadeEstoque" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                      <Component id="txtCodigoProduto" min="-2" pref="133" max="-2" attributes="0"/>
-                      <Component id="txtNomeProduto" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtValorUnit" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="txtQtdEstoque" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="txtCodigo" min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="txtNome" alignment="0" max="32767" attributes="0"/>
                       <Component id="jcbSetor" min="-2" pref="130" max="-2" attributes="0"/>
-                      <Component id="txtDescricaoProduto" pref="357" max="32767" attributes="0"/>
+                      <Component id="txtDescricao" pref="357" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="196" max="32767" attributes="0"/>
               </Group>
@@ -226,16 +226,16 @@
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodigoProduto" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="txtCodigo" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNomeProduto" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="txtNome" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtDescricaoProduto" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="txtDescricao" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -245,10 +245,10 @@
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="txtValor" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtValorUnit" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtQuantidadeEstoque" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtQtdEstoque" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -272,12 +272,12 @@
             <Property name="text" type="java.lang.String" value="C&#xf3;digo Produto: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCodigoProduto">
+        <Component class="javax.swing.JTextField" name="txtCodigo">
           <Properties>
             <Property name="name" type="java.lang.String" value="C&#xf3;digo Produto" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoProdutoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -288,7 +288,7 @@
             <Property name="text" type="java.lang.String" value="Nome:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNomeProduto">
+        <Component class="javax.swing.JTextField" name="txtNome">
           <Properties>
             <Property name="name" type="java.lang.String" value="Nome " noResource="true"/>
           </Properties>
@@ -309,7 +309,7 @@
             <Property name="text" type="java.lang.String" value="Valor Unit&#xe1;rio: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtValor">
+        <Component class="javax.swing.JFormattedTextField" name="txtValorUnit">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="0" type="0"/>
@@ -317,7 +317,7 @@
             <Property name="name" type="java.lang.String" value="Valor Unit&#xe1;rio" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValorUnitActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -328,12 +328,12 @@
             <Property name="text" type="java.lang.String" value="Quantidade estoque: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtQuantidadeEstoque">
+        <Component class="javax.swing.JTextField" name="txtQtdEstoque">
           <Properties>
             <Property name="name" type="java.lang.String" value="Quantidade estoque" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQuantidadeEstoqueActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQtdEstoqueActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jcbSetor">
@@ -360,7 +360,7 @@
             <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDescricaoProduto">
+        <Component class="javax.swing.JTextField" name="txtDescricao">
           <Properties>
             <Property name="name" type="java.lang.String" value="Descricao" noResource="true"/>
           </Properties>
@@ -382,10 +382,10 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="34" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnSairPro" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnExcluirPro" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAtualizarPro" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCadPro" linkSize="1" min="-2" pref="96" max="-2" attributes="0"/>
+                      <Component id="btnSair" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnExcluir" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAtualizar" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCadastrar" linkSize="1" min="-2" pref="96" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
@@ -395,20 +395,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnCadPro" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="btnCadastrar" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnAtualizarPro" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAtualizar" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnExcluirPro" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExcluir" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSairPro" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSair" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnCadPro">
+        <Component class="javax.swing.JButton" name="btnCadastrar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -416,10 +416,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadProActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAtualizarPro">
+        <Component class="javax.swing.JButton" name="btnAtualizar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Atualizar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -427,10 +427,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarProActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnExcluirPro">
+        <Component class="javax.swing.JButton" name="btnExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -438,10 +438,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirProActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSairPro">
+        <Component class="javax.swing.JButton" name="btnSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -449,7 +449,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairProActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

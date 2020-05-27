@@ -23,10 +23,10 @@ public class ProdutoDAO {
             addSQL = conexao.prepareStatement("INSERT INTO Produto (cod_produto,nome_produto,descricao,preco,qtd_estoque,setor) VALUES(?,?,?,?,?,?);",
                     Statement.RETURN_GENERATED_KEYS);
             
-            addSQL.setInt(1, produto.getCodPro());
-            addSQL.setString(2, produto.getNomePro());
+            addSQL.setInt(1, produto.getCodigo());
+            addSQL.setString(2, produto.getNome());
             addSQL.setString(3, produto.getDescricao());
-            addSQL.setDouble(4, produto.getPrecoUnit());
+            addSQL.setDouble(4, produto.getValorUnit());
             addSQL.setInt(5, produto.getQtdEstoque());
             addSQL.setString(6, produto.getSetor());
 
@@ -53,7 +53,7 @@ public class ProdutoDAO {
         return retorno;
     }
     
-    public static ArrayList<Produto> ConsultarProduto(String codPro) {
+    public static ArrayList<Produto> ConsultarProduto(String codigo) {
         boolean retorno = false;
         ArrayList<Produto> listaProduto = new ArrayList<>();
 
@@ -64,9 +64,9 @@ public class ProdutoDAO {
         try {
             //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = ConexaoMySql.getConexaoMySQL();
-            if(codPro != null) {
+            if(codigo != null) {
                 instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto where cod_produto LIKE ?");  //Caso queira retornar o ID
-                instrucaoSQL.setString(1, "%" + codPro + '%');
+                instrucaoSQL.setString(1, "%" + codigo + '%');
             } else {
                 instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto");  //Caso queira retornar o ID
             }
@@ -75,10 +75,10 @@ public class ProdutoDAO {
 
             while(rs.next()) {
                 Produto produto = new Produto();
-                produto.setCodPro(rs.getInt("cod_produto"));
-                produto.setNomePro(rs.getString("nome_produto"));
+                produto.setCodigo(rs.getInt("cod_produto"));
+                produto.setNome(rs.getString("nome_produto"));
                 produto.setDescricao(rs.getString("descricao"));
-                produto.setPrecoUnit(rs.getDouble("preco"));
+                produto.setValorUnit(rs.getDouble("preco"));
                 produto.setQtdEstoque(rs.getInt("qtd_estoque"));
                 produto.setSetor(rs.getString("setor"));
                 listaProduto.add(produto);
@@ -111,13 +111,13 @@ public class ProdutoDAO {
             conexao = ConexaoMySql.getConexaoMySQL();
             
             addSQL = conexao.prepareStatement("UPDATE produto SET nome_produto=?, descricao=?, preco=?, qtd_estoque=?, setor=? WHERE cod_produto=?;");
-              
-            addSQL.setString(1, produto.getNomePro());
+            
+            addSQL.setString(1, produto.getNome());
             addSQL.setString(2, produto.getDescricao());
-            addSQL.setDouble(3, produto.getPrecoUnit());
+            addSQL.setDouble(3, produto.getValorUnit());
             addSQL.setInt(4, produto.getQtdEstoque());
             addSQL.setString(5, produto.getSetor());
-            addSQL.setInt(6, produto.getCodPro());
+            addSQL.setInt(6, produto.getCodigo());
 
             int linhasAfetadas = addSQL.executeUpdate();
             
@@ -140,7 +140,7 @@ public class ProdutoDAO {
         return retorno;
     }
     
-    public static boolean Excluir(int codPro) {
+    public static boolean Excluir(int codigo) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement addSQL = null;
@@ -148,7 +148,7 @@ public class ProdutoDAO {
         try {
             conexao = ConexaoMySql.getConexaoMySQL();
             addSQL = conexao.prepareStatement("DELETE FROM produto WHERE cod_produto=?");
-            addSQL.setInt(1, codPro);
+            addSQL.setInt(1, codigo);
             int linhasAfetadas = addSQL.executeUpdate();
             if(linhasAfetadas > 0) {
                 retorno = true;

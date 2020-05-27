@@ -28,28 +28,28 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCodPsq = new javax.swing.JTextField();
+        txtPesquisaCodigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPesquisarPro = new javax.swing.JTable();
-        btnPesquisarPro = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtCodigoProduto = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtNomeProduto = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtValor = new javax.swing.JFormattedTextField();
+        txtValorUnit = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtQuantidadeEstoque = new javax.swing.JTextField();
+        txtQtdEstoque = new javax.swing.JTextField();
         jcbSetor = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        txtDescricaoProduto = new javax.swing.JTextField();
+        txtDescricao = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        btnCadPro = new javax.swing.JButton();
-        btnAtualizarPro = new javax.swing.JButton();
-        btnExcluirPro = new javax.swing.JButton();
-        btnSairPro = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,7 +59,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Código Produto: ");
 
-        txtCodPsq.setName("Código do Produto"); // NOI18N
+        txtPesquisaCodigo.setName("Código do Produto"); // NOI18N
 
         tblPesquisarPro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,10 +83,10 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             tblPesquisarPro.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        btnPesquisarPro.setText("Pesquisar");
-        btnPesquisarPro.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarProActionPerformed(evt);
+                btnPesquisarActionPerformed(evt);
             }
         });
 
@@ -98,9 +98,9 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCodPsq, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPesquisaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(btnPesquisarPro)
+                .addComponent(btnPesquisar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -113,8 +113,8 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCodPsq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarPro))
+                    .addComponent(txtPesquisaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addContainerGap())
@@ -125,17 +125,17 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Código Produto: ");
 
-        txtCodigoProduto.setName("Código Produto"); // NOI18N
-        txtCodigoProduto.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.setName("Código Produto"); // NOI18N
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoProdutoActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Nome:");
 
-        txtNomeProduto.setName("Nome "); // NOI18N
+        txtNome.setName("Nome "); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Setor:");
@@ -143,21 +143,21 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Valor Unitário: ");
 
-        txtValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtValor.setName("Valor Unitário"); // NOI18N
-        txtValor.addActionListener(new java.awt.event.ActionListener() {
+        txtValorUnit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        txtValorUnit.setName("Valor Unitário"); // NOI18N
+        txtValorUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorActionPerformed(evt);
+                txtValorUnitActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Quantidade estoque: ");
 
-        txtQuantidadeEstoque.setName("Quantidade estoque"); // NOI18N
-        txtQuantidadeEstoque.addActionListener(new java.awt.event.ActionListener() {
+        txtQtdEstoque.setName("Quantidade estoque"); // NOI18N
+        txtQtdEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantidadeEstoqueActionPerformed(evt);
+                txtQtdEstoqueActionPerformed(evt);
             }
         });
 
@@ -166,7 +166,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Descrição:");
 
-        txtDescricaoProduto.setName("Descricao"); // NOI18N
+        txtDescricao.setName("Descricao"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -183,12 +183,12 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQuantidadeEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomeProduto)
+                    .addComponent(txtValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome)
                     .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
                 .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -197,14 +197,14 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -212,10 +212,10 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGap(48, 48, 48))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtQuantidadeEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -226,35 +226,35 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnCadPro.setText("Cadastrar");
-        btnCadPro.setBorder(null);
-        btnCadPro.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setBorder(null);
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadProActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
 
-        btnAtualizarPro.setText("Atualizar");
-        btnAtualizarPro.setBorder(null);
-        btnAtualizarPro.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setBorder(null);
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarProActionPerformed(evt);
+                btnAtualizarActionPerformed(evt);
             }
         });
 
-        btnExcluirPro.setText("Excluir");
-        btnExcluirPro.setBorder(null);
-        btnExcluirPro.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorder(null);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirProActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
-        btnSairPro.setText("Sair");
-        btnSairPro.setBorder(null);
-        btnSairPro.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setText("Sair");
+        btnSair.setBorder(null);
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairProActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
@@ -265,30 +265,30 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSairPro)
-                    .addComponent(btnExcluirPro)
-                    .addComponent(btnAtualizarPro)
-                    .addComponent(btnCadPro, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSair)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnAtualizar)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtualizarPro, btnCadPro, btnExcluirPro, btnSairPro});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtualizar, btnCadastrar, btnExcluir, btnSair});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCadPro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAtualizarPro)
+                .addComponent(btnAtualizar)
                 .addGap(18, 18, 18)
-                .addComponent(btnExcluirPro)
+                .addComponent(btnExcluir)
                 .addGap(18, 18, 18)
-                .addComponent(btnSairPro)
+                .addComponent(btnSair)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAtualizarPro, btnCadPro, btnExcluirPro, btnSairPro});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAtualizar, btnCadastrar, btnExcluir, btnSair});
 
         jLabel8.setFont(new java.awt.Font("Viner Hand ITC", 1, 11)); // NOI18N
         jLabel8.setText("TLG Admin");
@@ -326,21 +326,21 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtQuantidadeEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeEstoqueActionPerformed
+    private void txtQtdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdEstoqueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantidadeEstoqueActionPerformed
+    }//GEN-LAST:event_txtQtdEstoqueActionPerformed
 
-    private void btnCadProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadProActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         
         if (modoTela == "Criação") {
-            int codPro = Integer.parseInt(txtCodigoProduto.getText());
-            String nomePro = txtNomeProduto.getText();
-            String descricao = txtDescricaoProduto.getText();
-            double precoUnit = Double.parseDouble(txtValor.getText());
-            int qtdEstoque = Integer.parseInt(txtQuantidadeEstoque.getText());
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            String nome = txtNome.getText();
+            String descricao = txtDescricao.getText();
+            double valorUnit = Double.parseDouble(txtValorUnit.getText());
+            int qtdEstoque = Integer.parseInt(txtQtdEstoque.getText());
             String setor = (String)jcbSetor.getSelectedItem();
             
-            boolean retorno = ProdutoController.Cadastrar(codPro, nomePro, descricao, precoUnit, qtdEstoque, setor);
+            boolean retorno = ProdutoController.Cadastrar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
             
             if(retorno == true) {
                 JOptionPane.showMessageDialog(null, "Produto cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
@@ -349,16 +349,16 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Falha ao cadastrar produto!", "Falha", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            int codPro = Integer.parseInt(txtCodigoProduto.getText());
-            String nomePro = txtNomeProduto.getText();
-            String descricao = txtDescricaoProduto.getText();
-            double precoUnit = Double.parseDouble(txtValor.getText());
-            int qtdEstoque = Integer.parseInt(txtQuantidadeEstoque.getText());
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            String nome = txtNome.getText();
+            String descricao = txtDescricao.getText();
+            double valorUnit = Double.parseDouble(txtValorUnit.getText());
+            int qtdEstoque = Integer.parseInt(txtQtdEstoque.getText());
             String setor = (String)jcbSetor.getSelectedItem();
             
             //Passo as informações da View para Controller
             try {
-                boolean retorno = ProdutoController.Atualizar(codPro, nomePro, descricao, precoUnit, qtdEstoque, setor);
+                boolean retorno = ProdutoController.Atualizar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
                 System.out.println(retorno);
                 JOptionPane.showMessageDialog(this, "Produto alterado com sucesso!", "Produto Alterado", JOptionPane.INFORMATION_MESSAGE);
                 modoTela = "Criação";
@@ -370,20 +370,20 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         }
         
         //após cadastrar limpa os campos
-        txtCodigoProduto.setText(null);
-        txtNomeProduto.setText(null);
-        txtDescricaoProduto.setText(null);
-        txtValor.setText(null);
-        txtQuantidadeEstoque.setText(null);
+        txtCodigo.setText(null);
+        txtNome.setText(null);
+        txtDescricao.setText(null);
+        txtValorUnit.setText(null);
+        txtQtdEstoque.setText(null);
         jcbSetor.setSelectedIndex(0);
         modoTela = "Criação";
-    }//GEN-LAST:event_btnCadProActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
     
     private void CarregaTabela() {
         ArrayList<String[]> listaProduto;
-        listaProduto = ProdutoController.ConsultarProduto(txtCodPsq.getText());
+        listaProduto = ProdutoController.ConsultarProduto(txtPesquisaCodigo.getText());
 
-        DefaultTableModel modelo = (DefaultTableModel) tblPesquisarPro.getModel();
+        DefaultTableModel modelo = (DefaultTableModel)tblPesquisarPro.getModel();
         modelo.setRowCount(0);
 
         for (String[] produto : listaProduto) {
@@ -397,13 +397,13 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         }
     }
     
-    private void btnPesquisarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarProActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         //Validador.ValidarNumeros(txtCodPsq);
-        Validador.ValidarNumeros(txtCodPsq);
+        Validador.ValidarNumeros(txtPesquisaCodigo);
         ArrayList<String[]> listaProduto;
-        listaProduto = ProdutoController.ConsultarProduto(txtCodPsq.getText());
+        listaProduto = ProdutoController.ConsultarProduto(txtPesquisaCodigo.getText());
 
-        DefaultTableModel modelo = (DefaultTableModel) tblPesquisarPro.getModel();
+        DefaultTableModel modelo = (DefaultTableModel)tblPesquisarPro.getModel();
         modelo.setRowCount(0);
 
         for (String[] produto : listaProduto) {
@@ -414,45 +414,45 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 produto[3],
                 produto[4],});
         }
-    }//GEN-LAST:event_btnPesquisarProActionPerformed
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void btnSairProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairProActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
        dispose();
-    }//GEN-LAST:event_btnSairProActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
-    private void btnAtualizarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarProActionPerformed
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         if (tblPesquisarPro.getRowCount() > 0) {
             //Resgato o número da linha pelo JTable
             int numeroLinha = tblPesquisarPro.getSelectedRow();
 
-            String codPro = tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString();
+            String codigo = tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString();
             String nome = tblPesquisarPro.getModel().getValueAt(numeroLinha, 1).toString();
             String descricao = tblPesquisarPro.getModel().getValueAt(numeroLinha, 2).toString();
-            String precoUnit = tblPesquisarPro.getModel().getValueAt(numeroLinha, 3).toString();
+            String valorUnit = tblPesquisarPro.getModel().getValueAt(numeroLinha, 3).toString();
             String qtdEstoque = tblPesquisarPro.getModel().getValueAt(numeroLinha, 4).toString();
             String setor = tblPesquisarPro.getModel().getValueAt(numeroLinha, 4).toString();
-            txtCodigoProduto.setText(codPro);
-            txtNomeProduto.setText(nome);
-            txtDescricaoProduto.setText(descricao);
-            txtValor.setText(precoUnit);
-            txtQuantidadeEstoque.setText(qtdEstoque);
+            txtCodigo.setText(codigo);
+            txtNome.setText(nome);
+            txtDescricao.setText(descricao);
+            txtValorUnit.setText(valorUnit);
+            txtQtdEstoque.setText(qtdEstoque);
             jcbSetor.setSelectedItem(setor);
             
             modoTela = "Alteração";
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela!");
         }
-    }//GEN-LAST:event_btnAtualizarProActionPerformed
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
-    private void btnExcluirProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProActionPerformed
-        String nome = (this.txtNomeProduto.getText());
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        String nome = (this.txtNome.getText());
 
         if (tblPesquisarPro.getRowCount() > 0) {
             int numeroLinha = tblPesquisarPro.getSelectedRow();
-            int codPro = Integer.parseInt(tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString());
+            int codigo = Integer.parseInt(tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString());
             //Chamando Controller
-            boolean retorno = ProdutoController.Excluir(codPro);
-            if (retorno == true) {
+            boolean retorno = ProdutoController.Excluir(codigo);
+            if(retorno == true) {
                 JOptionPane.showMessageDialog(null, "Produto excluido com Sucesso", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
                 CarregaTabela();
             } else {
@@ -462,15 +462,15 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela para excluir!");
         }
-    }//GEN-LAST:event_btnExcluirProActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
+    private void txtValorUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorUnitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
+    }//GEN-LAST:event_txtValorUnitActionPerformed
 
-    private void txtCodigoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoProdutoActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoProdutoActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -508,11 +508,11 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAtualizarPro;
-    private javax.swing.JButton btnCadPro;
-    private javax.swing.JButton btnExcluirPro;
-    private javax.swing.JButton btnPesquisarPro;
-    private javax.swing.JButton btnSairPro;
+    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -527,12 +527,12 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbSetor;
     private javax.swing.JTable tblPesquisarPro;
-    private javax.swing.JTextField txtCodPsq;
-    private javax.swing.JTextField txtCodigoProduto;
-    private javax.swing.JTextField txtDescricaoProduto;
-    private javax.swing.JTextField txtNomeProduto;
-    private javax.swing.JTextField txtQuantidadeEstoque;
-    private javax.swing.JFormattedTextField txtValor;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtPesquisaCodigo;
+    private javax.swing.JTextField txtQtdEstoque;
+    private javax.swing.JFormattedTextField txtValorUnit;
     // End of variables declaration//GEN-END:variables
 
 }
