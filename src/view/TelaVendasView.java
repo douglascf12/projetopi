@@ -6,8 +6,10 @@
 package view;
 
 import Controller.ProdutoController;
+import Controller.VendaController;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import model.Produto;
 import utils.Validador;
 
 /**
@@ -38,7 +40,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtNomeCliente = new javax.swing.JTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        txtCPF = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -89,7 +91,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtNomeCliente.setName("Nome do Cliente"); // NOI18N
 
         try {
-            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -106,7 +108,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jFormattedTextField3)
+                        .addComponent(txtCPF)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addComponent(txtNomeCliente))
@@ -119,7 +121,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jButton1)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -369,12 +371,16 @@ public class TelaVendasView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean cpfValido=Validador.ValidaCPF(jFormattedTextField3);
-        if(cpfValido){
-               jFormattedTextField3.setBackground(Color.white);
-        }else{
+        boolean cpfValido = Validador.ValidaCPF(txtCPF);
+        if (cpfValido) {
+            txtCPF.setBackground(Color.white);
+            String cpf = Validador.getCpfSomenteNumeros(txtCPF);
+            String nome = VendaController.PesquisarNomeVenda(cpf);
+            txtNomeCliente.setText(nome);
+
+        } else {
             JOptionPane.showMessageDialog(this, "CPF informado é inválido");
-            jFormattedTextField3.setBackground(Color.red);
+            txtCPF.setBackground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -393,8 +399,13 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String codigo=txtCodigoProduto.getText();
-        ProdutoController.ConsultarProduto(codigo);
+        int codigo = Integer.parseInt(txtCodigoProduto.getText());
+      
+        Produto p = new Produto();
+        
+        p = VendaController.PesquisarProdutosVendas(codigo);
+        txtNomeProduto.setText(p.getNome());
+        txtValorProduto.setText(String.valueOf(p.getValorUnit()));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -439,7 +450,6 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -458,6 +468,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCodigoProduto;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeProduto;
