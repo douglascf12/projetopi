@@ -51,7 +51,7 @@ public class RelatoriosView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cód. da Venda", "Cód. Detalhe Venda", "Cód. Produto", "Quantidade", "Data "
+                "Cód. do Cliente", "Cód. Detalhe Venda", "Cód. Produto", "Quantidade", "Data "
             }
         ));
         jScrollPane1.setViewportView(tblVenda);
