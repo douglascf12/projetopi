@@ -5,7 +5,6 @@
  */
 package view;
 
-import Controller.ProdutoController;
 import Controller.VendaController;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -145,10 +144,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,9 +396,9 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int codigo = Integer.parseInt(txtCodigoProduto.getText());
-      
+
         Produto p = new Produto();
-        
+
         p = VendaController.PesquisarProdutosVendas(codigo);
         txtNomeProduto.setText(p.getNome());
         txtValorProduto.setText(String.valueOf(p.getValorUnit()));

@@ -13,32 +13,16 @@ public class VendaController {
 
     public static String PesquisarNomeVenda(String cpf) {
         String retorno;
-        try {
-
-            retorno = VendaDAO.ConsultaClienteVenda(cpf);
-            return retorno;
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
-            retorno = null;
-            return retorno;
-        }
+        retorno = VendaDAO.ConsultaClienteVenda(cpf);
+        return retorno;
 
     }
 
-    public static  Produto PesquisarProdutosVendas(int idProduto) {
+    public static Produto PesquisarProdutosVendas(int idProduto) {
         Produto p = new Produto();
-        try {
-            p = VendaDAO.ConsultDadosProduto(idProduto);
-            return p;
+        p = VendaDAO.ConsultDadosProduto(idProduto);
 
-        } catch (Exception ex) {
-            Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
-            p = null;
-            return p;
-
-        }
-
+        return p;
     }
 
 }

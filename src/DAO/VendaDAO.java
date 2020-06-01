@@ -5,15 +5,12 @@
  */
 package DAO;
 
-import static java.lang.Class.forName;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Cliente;
-import model.Venda;
 import utils.ConexaoMySql;
 import model.Produto;
 
@@ -23,84 +20,100 @@ import model.Produto;
  */
 public class VendaDAO {
 
-    public static String ConsultaClienteVenda(String cpf) throws ClassNotFoundException {
+    public static String ConsultaClienteVenda(String cpf) {
 
         String retorno = null;
         ResultSet rs = null;
-        Connection conexao = null;
+        Connection conexao;
         PreparedStatement instrucaoSQL = null;
 
         try {
+
+            //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = ConexaoMySql.getConexaoMySQL();
 
-            instrucaoSQL = conexao.prepareStatement("select nome from Cliente where cpf = ?");
-            instrucaoSQL.setString(1, cpf);
+            instrucaoSQL = conexao.prepareStatement("SELECT nome FROM cliente where cpf LIKE ?");
+            instrucaoSQL.setString(1, "%" + cpf + '%');
+
             rs = instrucaoSQL.executeQuery();
-            retorno = rs.getString("nome");
+
+            if (rs.next()) {
+                retorno = rs.getString("nome");
+            }
 
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
             retorno = null;
+        } finally {
 
-        }
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
 
-        try {
-            if (instrucaoSQL != null) {
-                instrucaoSQL.close();
+                if (rs != null) {
+                    rs.close();
+                }
+
+                ConexaoMySql.FecharConexao();
+
+            } catch (SQLException ex) {
             }
-            if (rs != null) {
-                rs.close();
-            }
-            ConexaoMySql.FecharConexao();
-        } catch (SQLException ex) {
         }
-
         return retorno;
-
     }
-
-    public static Produto ConsultDadosProduto(int codProd) {
+    
+   public static Produto ConsultDadosProduto(int codProd) {
 
         Produto p = new Produto();
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-
+        p.setNome("Fran");
+        p.setValorUnit(200.10);
+        
         try {
-            conexao = ConexaoMySql.getConexaoMySQL();
 
-            instrucaoSQL = conexao.prepareStatement("select nome_produto, preco ,qtd_estoque from produto where cod_produto = ?");
-            instrucaoSQL.setInt(1, codProd);
+            //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
+            conexao = ConexaoMySql.getConexaoMySQL();
+            if (codProd != 0) {
+                instrucaoSQL = conexao.prepareStatement("SELECT nome_produto,preco FROM produto where cod_produto LIKE ?");  //Caso queira retornar o ID
+                instrucaoSQL.setString(1, "%" + codProd + '%');
+            } 
+
             rs = instrucaoSQL.executeQuery();
-            
-            p.setNome(rs.getString("nome_produto"));
-            p.setValorUnit(rs.getDouble("preco"));
-           
-           
+
+            if (rs.next()) {
+                p.setNome(rs.getString("nome_produto"));
+                p.setValorUnit(rs.getDouble("preco"));
+            }
 
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
-            return p;
+            p = null;
+        } finally {
 
-        }
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
 
-        try {
-            if (instrucaoSQL != null) {
-                instrucaoSQL.close();
+                if (rs != null) {
+                    rs.close();
+                }
+
+                ConexaoMySql.FecharConexao();
+
+            } catch (SQLException ex) {
             }
-            if (rs != null) {
-                rs.close();
-            }
-            ConexaoMySql.FecharConexao();
-        } catch (SQLException ex) {
         }
 
         return p;
-
-        }
-
     }
 
-
+}
