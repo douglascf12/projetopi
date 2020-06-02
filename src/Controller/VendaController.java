@@ -1,14 +1,21 @@
 package Controller;
 
 import DAO.VendaDAO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Produto;
-
+import model.Venda;
 public class VendaController {
 
-    public static boolean CadastrarVenda(int idproduto, int idcliente, String datadavenda) {
-        return false;
+    public static boolean CadastrarVenda(String cpf,String codigo, String datadavenda,Double valorTotal ,String qtdVendida) {
+        boolean retorno;
+        Venda pVenda = new Venda();
+        pVenda.setCpf(cpf);
+        pVenda.setCodigo(codigo);
+        pVenda.setDatadavenda(datadavenda);
+        pVenda.setValorTotal(valorTotal);
+        pVenda.setQtdVendida(qtdVendida);
+        retorno=VendaDAO.CadastrarVenda(pVenda);
+        //retorno=true;
+        return retorno;
     }
 
     public static String PesquisarNomeVenda(String cpf) {

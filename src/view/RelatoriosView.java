@@ -51,7 +51,7 @@ public class RelatoriosView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cód. do Cliente", "Cód. Detalhe Venda", "Cód. Produto", "Quantidade", "Data "
+                "CPF. do Cliente", "Cód.  Venda", "Cód. Produto", "Quantidade", "Data "
             }
         ));
         jScrollPane1.setViewportView(tblVenda);
@@ -70,7 +70,7 @@ public class RelatoriosView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cod. Venda", "Valor "
+                "Cod. Venda", "CPF. Do Cliente", "Valor "
             }
         ));
         jScrollPane2.setViewportView(jTable1);

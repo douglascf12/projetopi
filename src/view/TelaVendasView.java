@@ -7,10 +7,9 @@ package view;
 
 import Controller.VendaController;
 import java.awt.Color;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Produto;
 import utils.Validador;
 import model.Produto;
 
@@ -61,10 +60,10 @@ public class TelaVendasView extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
+        dateDataVenda = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -92,6 +91,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Nome: ");
 
+        txtNomeCliente.setEditable(false);
         txtNomeCliente.setName("Nome do Cliente"); // NOI18N
 
         try {
@@ -149,13 +149,16 @@ public class TelaVendasView extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -176,11 +179,13 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Nome:");
 
+        txtNomeProduto.setEditable(false);
         txtNomeProduto.setName("Nome do Produto"); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("Valor Unitário:");
 
+        txtValorProduto.setEditable(false);
         txtValorProduto.setName("Valor do Produto"); // NOI18N
 
         jLabel11.setText("Qtd:");
@@ -274,9 +279,7 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total de Vendas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel12.setText("Total de Vendas:");
-
+        jFormattedTextField2.setEditable(false);
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
         jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,37 +287,51 @@ public class TelaVendasView extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Data:");
+        dateDataVenda.setName("Data da Venda"); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setText("Total de Vendas:");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText("Data:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(63, 63, 63))
+                    .addComponent(jLabel14)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(14, 14, 14)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
+                    .addComponent(dateDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
                     .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jButton5.setText("Finalizar venda");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Cancelar Venda");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -382,7 +399,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton5, jButton6});
@@ -405,24 +422,24 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Validador.ValidaNomes(txtNomeCliente);
-        Validador.ValidaNomes(txtNomeProduto);
-        Validador.ValidarNumeros(txtCodigoProduto);
-        Validador.ValidarNumeros(txtQuantidadeProduto);
-        Validador.ValidarDecimais(txtValorProduto);
+        boolean condicao1 = Validador.ValidaCPF(txtCPF);
+        boolean condicao2 = Validador.ValidaNomes(txtNomeCliente);
+        boolean condicao3 = Validador.ValidarNumeros(txtCodigoProduto);
+        boolean condicao4 = Validador.ValidaNomes(txtNomeProduto);
+        boolean condicao5 = Validador.ValidarDecimais(txtValorProduto);
+        boolean condicao6 = Validador.ValidarNumeros(txtQuantidadeProduto);
+        if (condicao1 && condicao2 && condicao3 && condicao4 && condicao5 && condicao6) {
+            DefaultTableModel modelo = (DefaultTableModel) tblCarrinhoCompras.getModel();
 
-        DefaultTableModel modelo = (DefaultTableModel) tblCarrinhoCompras.getModel();
-        modelo.setRowCount(0);
+            modelo.addRow(new Object[]{
+                String.valueOf(txtCodigoProduto.getText()),
+                String.valueOf(txtNomeProduto.getText()),
+                String.valueOf(txtValorProduto.getText()),
+                String.valueOf(txtQuantidadeProduto.getText()),
+                String.valueOf("")
+            });
+        }
 
-     
-        modelo.addRow(new Object[]{
-            String.valueOf(txtCodigoProduto.getText()),
-            String.valueOf(txtNomeProduto.getText()),
-            String.valueOf(txtValorProduto.getText()),
-            String.valueOf(txtQuantidadeProduto.getText()),
-            String.valueOf("")
-        });
-        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -440,18 +457,54 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-      DefaultTableModel dtm = (DefaultTableModel)tblCarrinhoCompras.getModel();
-        if (tblCarrinhoCompras.getSelectedRow() >= 0){
+        DefaultTableModel dtm = (DefaultTableModel) tblCarrinhoCompras.getModel();
+        if (tblCarrinhoCompras.getSelectedRow() >= 0) {
             dtm.removeRow(tblCarrinhoCompras.getSelectedRow());
             tblCarrinhoCompras.setModel(dtm);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Favor selecionar um produto do carrinho para remover.");
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
-        
+
     }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        if (tblCarrinhoCompras.getRowCount() > 0) {
+            if (dateDataVenda.getDate() != null) {
+                dateDataVenda.setBackground(Color.white);
+                for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
+
+                    String cpf = Validador.getCpfSomenteNumeros(txtCPF);
+                    String codigo = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 0).toString();
+                    String nome = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 1).toString();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    String dataVenda = sdf.format(dateDataVenda.getDate());
+                    String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
+                    String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
+
+                    //Converto Valor unitário e Qtd Vendida em números para calcular o total de vendas
+                    Double ValorTotal = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
+
+                    //Pego a data da venda no formato próprio para incluir no BD 
+                    boolean retorno = VendaController.CadastrarVenda(cpf, codigo, dataVenda, ValorTotal, qtdVendida);
+                    if (retorno) {
+                        JOptionPane.showMessageDialog(this, "Venda Cadastrada!");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Erro ao cadastrar Venda.");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Adicione a data da venda.");
+                dateDataVenda.setBackground(Color.red);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Adicione algum produto ao carrinho.");
+        }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -489,21 +542,21 @@ public class TelaVendasView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dateDataVenda;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

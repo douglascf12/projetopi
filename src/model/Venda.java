@@ -3,42 +3,54 @@ package model;
 
 
 public class Venda {
+    private String cpf;
+    private String codigo;
+    private String datadavenda;
+    private Double valorTotal;
+    private String qtdVendida;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getDatadavenda() {
+        return datadavenda;
+    }
+
+    public void setDatadavenda(String datadavenda) {
+        this.datadavenda = datadavenda;
+    }
+
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public String getQtdVendida() {
+        return qtdVendida;
+    }
+
+    public void setQtdVendida(String qtdVendida) {
+        this.qtdVendida = qtdVendida;
+    }
     
-    private int idvenda;
-    private String datavenda;
-    private int qtdvendida;
 
-    public int getIdvenda() {
-        return idvenda;
-    }
-
-    public void setIdvenda(int idvenda) {
-        this.idvenda = idvenda;
-    }
-
-    public String getDatavenda() {
-        return datavenda;
-    }
-
-    public void setDatavenda(String datavenda) {
-        this.datavenda = datavenda;
-    }
-
-    public int getQtdvendida() {
-        return qtdvendida;
-    }
-
-    public void setQtdvendida(int qtdvendida) {
-        this.qtdvendida = qtdvendida;
-    }
-
-    public void add(Cliente ncliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-    
-    
-            
     
 }
 
