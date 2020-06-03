@@ -115,35 +115,33 @@ public class VendaDAO {
         return p;
     }
 
-    public static boolean CadastrarVenda(Venda pVenda) {
+    public static int CadastrarVenda(Venda pVenda) {
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        boolean retorno = false;
+        int retorno = -1;
         ResultSet rs = null;
-        
+
         try {
             conexao = ConexaoMySql.getConexaoMySQL();
 
             //Adiciono informações na tabela Venda
-            if (pVenda.isVenda()) {
-                instrucaoSQL = conexao.prepareStatement("INSERT INTO Venda(cpf,valor_compra,datavenda) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
-                instrucaoSQL.setString(1, pVenda.getCpf());
-                instrucaoSQL.setDouble(2, pVenda.getValorTotal());
-                instrucaoSQL.setString(3, pVenda.getDatadavenda());
-            } 
+            instrucaoSQL = conexao.prepareStatement("INSERT INTO Venda(cpf,valor_compra,datavenda) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL.setString(1, pVenda.getCpf());
+            instrucaoSQL.setDouble(2, pVenda.getValorTotal());
+            instrucaoSQL.setString(3, pVenda.getDatadavenda());
+
             //Exercuto a Instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
             if (linhasAfetadas > 0) {
                 ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    pVenda.setIdVenda(generatedKeys.getInt(1));
+                    retorno = generatedKeys.getInt(1);
                 }
-                retorno = CadastrarDetalheVenda(pVenda);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            retorno = false;
+            retorno = -1;
         } finally {
 
             //Libero os recursos da memória
@@ -181,7 +179,13 @@ public class VendaDAO {
             instrucaoSQL.setString(4, pVenda.getQtdVendida());
             //Exercuto a Instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
-            retorno = true;
+            if (linhasAfetadas > 0) {
+                JOptionPane.showMessageDialog(null, "Relatório Analítico cadastrado!");
+                return true;
+            } else {
+                JOptionPane.showConfirmDialog(null, "Erro ao cadastrar Relatório!");
+                return false;
+            }
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

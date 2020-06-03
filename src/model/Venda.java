@@ -9,16 +9,7 @@ public class Venda {
     private Double valorTotal;
     private String qtdVendida;
     private int idVenda;
-    boolean venda;
 
-    public boolean isVenda() {
-        return venda;
-    }
-
-    public void setVenda(boolean venda) {
-        this.venda = venda;
-    }
-    
 
     public int getIdVenda() {
         return idVenda;

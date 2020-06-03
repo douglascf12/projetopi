@@ -306,7 +306,6 @@ public class TelaVendasView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(14, 14, 14)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -399,7 +398,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton5, jButton6});
@@ -472,39 +471,30 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Double ValorTotal = 0.0;
-        boolean retorno = false;
+        int id_venda = 0;
+        boolean retorno=false;
         if (tblCarrinhoCompras.getRowCount() > 0) {
             if (dateDataVenda.getDate() != null) {
                 dateDataVenda.setBackground(Color.white);
-
+                //Calculo o valor Total dos da compra
                 for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
                     String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
                     String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
                     Double ValorParcial = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
                     ValorTotal = ValorTotal + ValorParcial;
                 }
+                String cpf = Validador.getCpfSomenteNumeros(txtCPF);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String dataVenda = sdf.format(dateDataVenda.getDate());
+                //Chamo a função que calculará o Relatório sintético e vai retornar o ID_VENDA
+                id_venda = VendaController.CadastrarVenda(cpf, dataVenda, ValorTotal);
+                
+                //Com o ID da Venda retornado, faço um laço para adicionar os produtos Vendidos a tabela Detalhe_Venda
                 for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
-                    String cpf = Validador.getCpfSomenteNumeros(txtCPF);
                     String codigo = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 0).toString();
-                    String nome = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 1).toString();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    String dataVenda = sdf.format(dateDataVenda.getDate());
-                    String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
                     String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
-                    boolean venda = false;
-                    if (numeroLinha == 0) {
-                        venda = true;
-                    }
-                    
-                    retorno = VendaController.CadastrarVenda(cpf, codigo, dataVenda, ValorTotal, qtdVendida, venda);
-                }
-
-                //Pego a data da venda no formato próprio para incluir no BD 
-                if (retorno) {
-                    JOptionPane.showMessageDialog(this, "Venda Cadastrada!");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro ao cadastrar Venda.");
-                }
+                    retorno=VendaController.CadastrarDetalheVenda(cpf, id_venda, codigo, qtdVendida);
+                }                
 
             } else {
                 JOptionPane.showMessageDialog(null, "Adicione a data da venda.");
