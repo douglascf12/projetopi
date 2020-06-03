@@ -120,26 +120,27 @@ public class VendaDAO {
         PreparedStatement instrucaoSQL = null;
         boolean retorno = false;
         ResultSet rs = null;
+        
         try {
             conexao = ConexaoMySql.getConexaoMySQL();
 
             //Adiciono informações na tabela Venda
-            instrucaoSQL = conexao.prepareStatement("INSERT INTO Venda(cpf,valor_compra) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
-            instrucaoSQL.setString(1, pVenda.getCpf());
-            instrucaoSQL.setDouble(2, pVenda.getValorTotal());
+            if (pVenda.isVenda()) {
+                instrucaoSQL = conexao.prepareStatement("INSERT INTO Venda(cpf,valor_compra,datavenda) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                instrucaoSQL.setString(1, pVenda.getCpf());
+                instrucaoSQL.setDouble(2, pVenda.getValorTotal());
+                instrucaoSQL.setString(3, pVenda.getDatadavenda());
+            } 
             //Exercuto a Instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
-            //Adiciono informações na tabela DetalheVenda
-            instrucaoSQL = conexao.prepareStatement("INSERT INTO detalhe_venda(cpf,id_venda,cod_produto,data_venda,qtd_vendida) VALUES(?,LAST_INSERT_ID(),?,?,?)");
-            instrucaoSQL.setString(1, pVenda.getCpf());
-            instrucaoSQL.setString(2, pVenda.getCodigo());
-            instrucaoSQL.setString(3, pVenda.getDatadavenda());
-            instrucaoSQL.setString(4, pVenda.getQtdVendida());
-            //Exercuto a Instrução SQL
-            linhasAfetadas = instrucaoSQL.executeUpdate();
-            retorno = true;
-
+            if (linhasAfetadas > 0) {
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    pVenda.setIdVenda(generatedKeys.getInt(1));
+                }
+                retorno = CadastrarDetalheVenda(pVenda);
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             retorno = false;
@@ -162,6 +163,47 @@ public class VendaDAO {
             }
         }
 
+        return retorno;
+    }
+
+    public static boolean CadastrarDetalheVenda(Venda pVenda) {
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        boolean retorno = false;
+        ResultSet rs = null;
+        try {
+            conexao = ConexaoMySql.getConexaoMySQL();
+
+            instrucaoSQL = conexao.prepareStatement("INSERT INTO detalhe_venda(cpf,cod_produto,id_venda,qtd_vendida) VALUES(?,?,?,?)");
+            instrucaoSQL.setString(1, pVenda.getCpf());
+            instrucaoSQL.setString(2, pVenda.getCodigo());
+            instrucaoSQL.setInt(3, pVenda.getIdVenda());
+            instrucaoSQL.setString(4, pVenda.getQtdVendida());
+            //Exercuto a Instrução SQL
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+            retorno = true;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                if (rs != null) {
+                    rs.close();
+                }
+
+                ConexaoMySql.FecharConexao();
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
         return retorno;
     }
 

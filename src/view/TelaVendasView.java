@@ -471,12 +471,19 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextField2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+        Double ValorTotal = 0.0;
+        boolean retorno = false;
         if (tblCarrinhoCompras.getRowCount() > 0) {
             if (dateDataVenda.getDate() != null) {
                 dateDataVenda.setBackground(Color.white);
-                for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
 
+                for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
+                    String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
+                    String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
+                    Double ValorParcial = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
+                    ValorTotal = ValorTotal + ValorParcial;
+                }
+                for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
                     String cpf = Validador.getCpfSomenteNumeros(txtCPF);
                     String codigo = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 0).toString();
                     String nome = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 1).toString();
@@ -484,18 +491,21 @@ public class TelaVendasView extends javax.swing.JFrame {
                     String dataVenda = sdf.format(dateDataVenda.getDate());
                     String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
                     String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
-
-                    //Converto Valor unitário e Qtd Vendida em números para calcular o total de vendas
-                    Double ValorTotal = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
-
-                    //Pego a data da venda no formato próprio para incluir no BD 
-                    boolean retorno = VendaController.CadastrarVenda(cpf, codigo, dataVenda, ValorTotal, qtdVendida);
-                    if (retorno) {
-                        JOptionPane.showMessageDialog(this, "Venda Cadastrada!");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Erro ao cadastrar Venda.");
+                    boolean venda = false;
+                    if (numeroLinha == 0) {
+                        venda = true;
                     }
+                    
+                    retorno = VendaController.CadastrarVenda(cpf, codigo, dataVenda, ValorTotal, qtdVendida, venda);
                 }
+
+                //Pego a data da venda no formato próprio para incluir no BD 
+                if (retorno) {
+                    JOptionPane.showMessageDialog(this, "Venda Cadastrada!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erro ao cadastrar Venda.");
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Adicione a data da venda.");
                 dateDataVenda.setBackground(Color.red);

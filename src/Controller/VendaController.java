@@ -5,7 +5,7 @@ import model.Produto;
 import model.Venda;
 public class VendaController {
 
-    public static boolean CadastrarVenda(String cpf,String codigo, String datadavenda,Double valorTotal ,String qtdVendida) {
+    public static boolean CadastrarVenda(String cpf,String codigo, String datadavenda,Double valorTotal ,String qtdVendida, boolean venda) {
         boolean retorno;
         Venda pVenda = new Venda();
         pVenda.setCpf(cpf);
@@ -13,6 +13,7 @@ public class VendaController {
         pVenda.setDatadavenda(datadavenda);
         pVenda.setValorTotal(valorTotal);
         pVenda.setQtdVendida(qtdVendida);
+        pVenda.setVenda(venda);
         retorno=VendaDAO.CadastrarVenda(pVenda);
         //retorno=true;
         return retorno;

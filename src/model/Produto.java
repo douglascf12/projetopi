@@ -1,7 +1,7 @@
 package model;
 
 public class Produto {
-    
+
     private int codigo;
     private String nome;
     private String descricao;
@@ -12,7 +12,7 @@ public class Produto {
     public int getCodigo() {
         return codigo;
     }
-    
+
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -24,7 +24,7 @@ public class Produto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public String getDescricao() {
         return descricao;
     }
@@ -32,7 +32,7 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
     public double getValorUnit() {
         return valorUnit;
     }
@@ -48,7 +48,7 @@ public class Produto {
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
-    
+
     public String getSetor() {
         return setor;
     }
