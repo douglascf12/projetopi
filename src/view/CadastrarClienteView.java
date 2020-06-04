@@ -268,7 +268,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btnAtualizarCliente.setText("Atualizar");
+        btnAtualizarCliente.setText("Editar");
         btnAtualizarCliente.setBorder(null);
         btnAtualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,7 +324,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,7 +459,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         ArrayList<String[]> listaCliente;
         listaCliente = ClienteController.ConsultarCliente(txtPsqNomeCli.getText());
-
+        if(listaCliente.size()>0){
         DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
         modelo.setRowCount(0);
 
@@ -470,6 +470,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 cliente[2],
                 cliente[3],
                 cliente[4],});
+        }
         }
     }
     private void bntPsqCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPsqCliActionPerformed

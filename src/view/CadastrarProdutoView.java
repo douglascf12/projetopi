@@ -39,12 +39,12 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtValorUnit = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         txtQtdEstoque = new javax.swing.JTextField();
         jcbSetor = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txtDescricao = new javax.swing.JTextField();
+        txtValorUnit = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
@@ -143,14 +143,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Valor Unitário: ");
 
-        txtValorUnit.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        txtValorUnit.setName("Valor Unitário"); // NOI18N
-        txtValorUnit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorUnitActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Quantidade estoque: ");
 
@@ -182,15 +174,19 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome)
-                    .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNome)
+                        .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                    .addComponent(txtValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(196, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtQtdEstoque, txtValorUnit});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -206,14 +202,14 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(13, 13, 13)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(48, 48, 48))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(txtValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
@@ -223,6 +219,8 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                     .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtQtdEstoque, txtValorUnit});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -447,14 +445,14 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             String descricao = tblPesquisarPro.getModel().getValueAt(numeroLinha, 2).toString();
             String valorUnit = tblPesquisarPro.getModel().getValueAt(numeroLinha, 3).toString();
             String qtdEstoque = tblPesquisarPro.getModel().getValueAt(numeroLinha, 4).toString();
-            String setor = tblPesquisarPro.getModel().getValueAt(numeroLinha, 4).toString();
+            String setor = tblPesquisarPro.getModel().getValueAt(numeroLinha, 5).toString();
             txtCodigo.setText(codigo);
             txtNome.setText(nome);
             txtDescricao.setText(descricao);
             txtValorUnit.setText(valorUnit);
             txtQtdEstoque.setText(qtdEstoque);
             jcbSetor.setSelectedItem(setor);
-
+            
             modoTela = "Alteração";
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela!");
@@ -480,10 +478,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela para excluir!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void txtValorUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorUnitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorUnitActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
@@ -549,7 +543,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisaCodigo;
     private javax.swing.JTextField txtQtdEstoque;
-    private javax.swing.JFormattedTextField txtValorUnit;
+    private javax.swing.JTextField txtValorUnit;
     // End of variables declaration//GEN-END:variables
 
 }

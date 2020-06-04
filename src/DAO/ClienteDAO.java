@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import utils.ConexaoMySql;
 
@@ -30,7 +31,7 @@ public class ClienteDAO {
         try {
 
             conexao = ConexaoMySql.getConexaoMySQL();
-
+           
             addSQL = conexao.prepareStatement("INSERT INTO Cliente (cpf,nome,dataNascimento,telefone,endereco) VALUES(?, ?, ?, ?, ?);",
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -47,7 +48,7 @@ public class ClienteDAO {
             } else {
                 retorno = false;
             }
-            return retorno;
+            return retorno;          
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
