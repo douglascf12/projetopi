@@ -7,13 +7,16 @@ package view;
 
 import Controller.ClienteController;
 import java.awt.Color;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import utils.Validador;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
-import view.CadastrarClienteView;
 
 /**
  *
@@ -324,7 +327,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,7 +365,13 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             String endereco = tblPesquisar.getModel().getValueAt(numeroLinha, 4).toString();
             txtCpfCli.setText(cpf);
             txtNomeCliente.setText(nome);
-            jDateChooser1.setDateFormatString(dataNascimento);
+            try {
+                SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+                Date date = (Date) formatter.parse(dataNascimento);
+                jDateChooser1.setDate(date);
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastrarClienteView.class.getName()).log(Level.SEVERE, null, ex);
+            }
             txtTelefoneCliente.setText(telefone);
             txtEnderecoCliente.setText(endereco);
             modoTela = "Alteração";
@@ -430,13 +439,14 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         } else {
             String cpf = Validador.getCpfSomenteNumeros(txtCpfCli);
             String nome = (txtNomeCliente.getText());
-            //String dataNascimento = jDateChooser1.getDateFormatString();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dataNascimento = sdf.format(jDateChooser1.getDate());
             String telefone = (txtTelefoneCliente.getText());
             String endereco = (txtEnderecoCliente.getText());
 
             //Passo as informações da View para Controller
             try {
-                boolean retorno = ClienteController.Atualizar(cpf, nome/*, dataNascimento*/, telefone, endereco);
+                boolean retorno = ClienteController.Atualizar(cpf, nome, dataNascimento, telefone, endereco);
                 System.out.println(retorno);
                 JOptionPane.showMessageDialog(this, "Cliente alterado com sucesso!", "Cliente Alterado", JOptionPane.INFORMATION_MESSAGE);
                 modoTela = "Criação";
@@ -449,7 +459,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         }
         txtCpfCli.setText(null);
         txtNomeCliente.setText(null);
-        //jDateChooser1.setDate(null);
+        jDateChooser1.setDate(null);
         txtTelefoneCliente.setText(null);
         txtEnderecoCliente.setText(null);
         modoTela = "Criação";
@@ -459,18 +469,18 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         ArrayList<String[]> listaCliente;
         listaCliente = ClienteController.ConsultarCliente(txtPsqNomeCli.getText());
-        if(listaCliente.size()>0){
-        DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
-        modelo.setRowCount(0);
+        if (listaCliente.size() > 0) {
+            DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
+            modelo.setRowCount(0);
 
-        for (String[] cliente : listaCliente) {
-            modelo.addRow(new String[]{
-                cliente[0],
-                cliente[1],
-                cliente[2],
-                cliente[3],
-                cliente[4],});
-        }
+            for (String[] cliente : listaCliente) {
+                modelo.addRow(new String[]{
+                    cliente[0],
+                    cliente[1],
+                    cliente[2],
+                    cliente[3],
+                    cliente[4],});
+            }
         }
     }
     private void bntPsqCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPsqCliActionPerformed

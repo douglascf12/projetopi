@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import utils.ConexaoMySql;
@@ -20,7 +22,7 @@ import utils.ConexaoMySql;
  * @author andre
  */
 public class ClienteDAO {
-   
+
     PreparedStatement addSQL = null;
     private static Connection conexao;
 
@@ -31,7 +33,7 @@ public class ClienteDAO {
         try {
 
             conexao = ConexaoMySql.getConexaoMySQL();
-           
+
             addSQL = conexao.prepareStatement("INSERT INTO Cliente (cpf,nome,dataNascimento,telefone,endereco) VALUES(?, ?, ?, ?, ?);",
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -48,7 +50,7 @@ public class ClienteDAO {
             } else {
                 retorno = false;
             }
-            return retorno;          
+            return retorno;
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -76,15 +78,16 @@ public class ClienteDAO {
 
             conexao = ConexaoMySql.getConexaoMySQL();
 
-           addSQL = conexao.prepareStatement("UPDATE cliente SET nome = ?, telefone=?, endereco=?  WHERE cpf = ?;");
-              
+            addSQL = conexao.prepareStatement("UPDATE cliente SET nome = ?, telefone=?, endereco=?, dataNascimento=?  WHERE cpf = ?;");
+
             addSQL.setString(1, c.getNome());
             addSQL.setString(2, c.getTelefone());
             addSQL.setString(3, c.getEndereco());
-            addSQL.setString(4, c.getCpf());
+            addSQL.setString(4, c.getDataNascimento() );
+            addSQL.setString(5, c.getCpf());
 
             int linhasAfetadas = addSQL.executeUpdate();
-            
+
             if (linhasAfetadas > 0) {
                 retorno = true;
             } else {
@@ -174,7 +177,10 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente();
                 cliente.setCpf(rs.getString("cpf"));
                 cliente.setNome(rs.getString("nome"));
-                cliente.setDataNascimento(rs.getString("dataNascimento"));
+                Date data = rs.getDate("dataNascimento");              
+                SimpleDateFormat formatdata = new SimpleDateFormat("dd/MM/yyyy");
+                String dataNascimento = formatdata.format(data);
+                cliente.setDataNascimento(dataNascimento);
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setEndereco(rs.getString("endereco"));
                 listaCliente.add(cliente);

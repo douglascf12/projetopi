@@ -5,12 +5,14 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author andre
  */
 public class Cliente {
-    
+
     private String nome;
     private String cpf;
     private String dataNascimento;
@@ -20,6 +22,7 @@ public class Cliente {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -55,9 +58,5 @@ public class Cliente {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
 }
-
-
-    
-  
-

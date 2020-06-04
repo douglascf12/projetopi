@@ -28,16 +28,15 @@ public class ClienteController {
         return retorno;
     }
 
-    public static boolean Atualizar(String cpf,String nome, /*String dataNascimento,*/ String telefone, String endereco) {
+    public static boolean Atualizar(String cpf,String nome, String dataNascimento, String telefone, String endereco) {
         Cliente objCliente = new Cliente();
         objCliente.setCpf(cpf);
         objCliente.setNome(nome);
-       // objCliente.setDataNascimento(dataNascimento);
+        objCliente.setDataNascimento(dataNascimento);
         objCliente.setTelefone(telefone);
         objCliente.setEndereco(endereco);
 
-        boolean retorno = ClienteDAO.Atualizar(objCliente);
-
+       boolean retorno = ClienteDAO.Atualizar(objCliente);
         return retorno;
     }
 
