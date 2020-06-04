@@ -1,4 +1,10 @@
 package view;
+import Controller.RelatorioController;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,22 +37,28 @@ public class RelatoriosView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblVenda = new javax.swing.JTable();
+        tblDetalheVenda = new javax.swing.JTable();
         btnSair = new javax.swing.JButton();
         cltDataInicio = new com.toedter.calendar.JDateChooser();
         cltDataFim = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblVendas = new javax.swing.JTable();
         btnDetalheVenda = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText("De:");
 
         jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        tblVenda.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetalheVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -54,7 +66,7 @@ public class RelatoriosView extends javax.swing.JFrame {
                 "CPF. do Cliente", "Cód.  Venda", "Cód. Produto", "Quantidade", "Data "
             }
         ));
-        jScrollPane1.setViewportView(tblVenda);
+        jScrollPane1.setViewportView(tblDetalheVenda);
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +77,7 @@ public class RelatoriosView extends javax.swing.JFrame {
 
         jLabel3.setText("Até");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -73,25 +85,34 @@ public class RelatoriosView extends javax.swing.JFrame {
                 "Cod. Venda", "CPF. Do Cliente", "Valor "
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblVendas);
 
         btnDetalheVenda.setText("Exibir Detalhes");
+        btnDetalheVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalheVendaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Detalhes Venda");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDetalheVenda)
-                .addContainerGap(59, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSair))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDetalheVenda))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(btnSair))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
@@ -101,33 +122,39 @@ public class RelatoriosView extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(cltDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(0, 310, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addGap(65, 105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(cltDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
-                        .addComponent(cltDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDetalheVenda))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(btnSair))
+                    .addComponent(jLabel2)
+                    .addComponent(cltDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(cltDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(btnDetalheVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSair, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -136,6 +163,69 @@ public class RelatoriosView extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (cltDataInicio.getDate() != null && cltDataFim.getDate() != null){
+                 
+           SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                String dataInicio = formato.format(cltDataInicio.getDate());
+                String dataFim = formato.format(cltDataFim.getDate());
+             ArrayList<String[]> listaVenda = new ArrayList();
+             
+              listaVenda = RelatorioController.SalvarRelatorio(dataInicio,dataFim);
+         DefaultTableModel modelo  = (DefaultTableModel) tblVendas.getModel();
+           modelo.setRowCount(0);
+           
+           for (String[] venda : listaVenda) {
+               modelo.addRow(new String[]{
+                   venda[0],
+                   venda[1],
+                   venda[2],
+                   venda[3]
+               });
+           }
+              
+               
+          
+           
+       }else {
+                JOptionPane.showMessageDialog(null, "Preencha os campos de data.");
+                cltDataInicio.setBackground(Color.red);
+                cltDataFim.setBackground(Color.red);
+       
+    
+                
+          
+
+       }
+                        
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnDetalheVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalheVendaActionPerformed
+        
+        if(tblVendas.getSelectedRow()>= 0){
+            
+            int numeroLinha = tblVendas.getSelectedRow();
+            int idVenda = Integer.parseInt(tblVendas.getModel().getValueAt(numeroLinha, 0).toString());
+            
+            ArrayList<String[]>  listaDetalhe = new ArrayList();
+            listaDetalhe = RelatorioController.RelatorioDetalheVenda(idVenda);
+            DefaultTableModel modelo  = (DefaultTableModel) tblDetalheVenda.getModel();
+           modelo.setRowCount(0);
+             for (String[] venda : listaDetalhe) {
+               modelo.addRow(new String[]{
+                   venda[0],
+                   venda[1],
+                   venda[2],
+                   venda[3],
+                   venda[4]
+               });
+             }
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela para ver os detalhes");
+
+    }//GEN-LAST:event_btnDetalheVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,11 +268,12 @@ public class RelatoriosView extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser cltDataFim;
     private com.toedter.calendar.JDateChooser cltDataInicio;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable tblVenda;
+    private javax.swing.JTable tblDetalheVenda;
+    private javax.swing.JTable tblVendas;
     // End of variables declaration//GEN-END:variables
 }
