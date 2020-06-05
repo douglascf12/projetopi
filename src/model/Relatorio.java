@@ -7,12 +7,26 @@ package model;
 
 /**
  *
- * @author User
+ * @Débora Ramos Teixeira Souza
+ * @Andrea Pereira dos Santos
+ * @Carlos Eduardo
+ * @Douglas Cardoso
+ * @Francisco W
+ * @see model.Relatorio
  */
+    
+    
 public class Relatorio {
+    /**
+     * @param dataInicio objeto do tipo Relatorio
+     * @param dataFim objeto do tipo Relatorio
+     */
+    
+    
     private String dataInicio;
     private String dataFim;
     
+    //Criação dos getteres e setteres dos objetos
      public String getDataInicio() {
         return dataInicio;
     }
