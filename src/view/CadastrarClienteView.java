@@ -32,6 +32,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
     public CadastrarClienteView() {
         initComponents();
+        setLocationRelativeTo(null);
         CarregaTabela();
 
     }
@@ -47,6 +48,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jProgressBar1 = new javax.swing.JProgressBar();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtPsqNomeCli = new javax.swing.JTextField();
@@ -64,6 +66,10 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         txtTelefoneCliente = new javax.swing.JFormattedTextField();
         txtCpfCli = new javax.swing.JFormattedTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        txtEmailCliente = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jcbSexo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         btnCadastrarCliente = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
@@ -98,11 +104,11 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CPF", "Nome", "Data de Nasc.", "Telefone", "Endereço"
+                "CPF", "Nome", "Data de Nasc.", "Telefone", "Endereço", "Email", "Sexo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,6 +178,14 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         }
         txtCpfCli.setName("CPF"); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Email:");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Sexo:");
+
+        jcbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Feminino", "Masculino", "" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -183,14 +197,21 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtCpfCli, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                     .addComponent(txtTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jcbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmailCliente))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -210,7 +231,11 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                         .addComponent(jLabel9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jcbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -219,7 +244,11 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -363,6 +392,8 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             String dataNascimento = tblPesquisar.getModel().getValueAt(numeroLinha, 2).toString();
             String telefone = tblPesquisar.getModel().getValueAt(numeroLinha, 3).toString();
             String endereco = tblPesquisar.getModel().getValueAt(numeroLinha, 4).toString();
+            String email = tblPesquisar.getModel().getValueAt(numeroLinha, 5).toString();
+            String sexo = tblPesquisar.getModel().getValueAt(numeroLinha, 6).toString();
             txtCpfCli.setText(cpf);
             txtNomeCliente.setText(nome);
             try {
@@ -374,6 +405,9 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             }
             txtTelefoneCliente.setText(telefone);
             txtEnderecoCliente.setText(endereco);
+            txtEmailCliente.setText(email);            
+            jcbSexo.setSelectedItem(sexo);
+            
             modoTela = "Alteração";
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um cliente da tabela!");
@@ -422,9 +456,12 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                     String dataNascimento = sdf.format(jDateChooser1.getDate());
                     String telefone = (txtTelefoneCliente.getText());
                     String endereco = (txtEnderecoCliente.getText());
+                    String email = (txtEmailCliente.getText().toLowerCase());
+                    String sexo = (String) jcbSexo.getSelectedItem();
+                   
 
                     //Chamando Controller
-                    boolean retorno = ClienteController.Cadastrar(cpf, nome, dataNascimento, telefone, endereco);
+                    boolean retorno = ClienteController.Cadastrar(cpf, nome, dataNascimento, telefone, endereco, email, sexo);
                     if (retorno == true) {
                         JOptionPane.showMessageDialog(null, "Cliente cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
                         CarregaTabela();
@@ -443,10 +480,14 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             String dataNascimento = sdf.format(jDateChooser1.getDate());
             String telefone = (txtTelefoneCliente.getText());
             String endereco = (txtEnderecoCliente.getText());
+            String email = (txtEmailCliente.getText());
+            String sexo = (String) jcbSexo.getSelectedItem();
+            
+                    
 
             //Passo as informações da View para Controller
             try {
-                boolean retorno = ClienteController.Atualizar(cpf, nome, dataNascimento, telefone, endereco);
+                boolean retorno = ClienteController.Atualizar(cpf, nome, dataNascimento, telefone, endereco,email,sexo);
                 System.out.println(retorno);
                 JOptionPane.showMessageDialog(this, "Cliente alterado com sucesso!", "Cliente Alterado", JOptionPane.INFORMATION_MESSAGE);
                 modoTela = "Criação";
@@ -462,6 +503,9 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         jDateChooser1.setDate(null);
         txtTelefoneCliente.setText(null);
         txtEnderecoCliente.setText(null);
+        txtEmailCliente.setText(null);
+        jcbSexo.setSelectedIndex(0);
+        
         modoTela = "Criação";
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
@@ -479,7 +523,9 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                     cliente[1],
                     cliente[2],
                     cliente[3],
-                    cliente[4],});
+                    cliente[4],
+                    cliente[5],
+                    cliente[6], });
             }
         }
     }
@@ -497,7 +543,9 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 cliente[1],
                 cliente[2],
                 cliente[3],
-                cliente[4],});
+                cliente[4],
+                cliente[5],
+                cliente[6], });
         }
 
     }//GEN-LAST:event_bntPsqCliActionPerformed
@@ -559,6 +607,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluirCliente;
     private javax.swing.JButton btnSair;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -566,15 +615,19 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JComboBox<String> jcbSexo;
     private javax.swing.JScrollPane tabCli;
     private javax.swing.JTable tblPesquisar;
     private javax.swing.JFormattedTextField txtCpfCli;
+    private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JTextField txtEnderecoCliente;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtPsqNomeCli;

@@ -24,6 +24,7 @@ public class TelaVendasView extends javax.swing.JFrame {
      */
     public TelaVendasView() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

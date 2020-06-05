@@ -23,6 +23,7 @@ public class RelatoriosView extends javax.swing.JFrame {
      */
     public RelatoriosView() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -34,7 +34,7 @@ public class ClienteDAO {
 
             conexao = ConexaoMySql.getConexaoMySQL();
 
-            addSQL = conexao.prepareStatement("INSERT INTO Cliente (cpf,nome,dataNascimento,telefone,endereco) VALUES(?, ?, ?, ?, ?);",
+            addSQL = conexao.prepareStatement("INSERT INTO Cliente (cpf,nome,dataNascimento,telefone,endereco, email, sexo) VALUES(?, ?, ?, ?, ?,?,?);",
                     Statement.RETURN_GENERATED_KEYS);
 
             addSQL.setString(1, c.getCpf());
@@ -42,6 +42,8 @@ public class ClienteDAO {
             addSQL.setString(3, c.getDataNascimento());
             addSQL.setString(4, c.getTelefone());
             addSQL.setString(5, c.getEndereco());
+            addSQL.setString(6, c.getEmail());
+            addSQL.setString(7, c.getSexo());
 
             int linhasAfetadas = addSQL.executeUpdate();
 
@@ -78,13 +80,16 @@ public class ClienteDAO {
 
             conexao = ConexaoMySql.getConexaoMySQL();
 
-            addSQL = conexao.prepareStatement("UPDATE cliente SET nome = ?, telefone=?, endereco=?, dataNascimento=?  WHERE cpf = ?;");
+            addSQL = conexao.prepareStatement("UPDATE cliente SET nome = ?, telefone=?, endereco=?, dataNascimento=?, email=?, sexo=?  WHERE cpf = ?;");
 
             addSQL.setString(1, c.getNome());
             addSQL.setString(2, c.getTelefone());
             addSQL.setString(3, c.getEndereco());
             addSQL.setString(4, c.getDataNascimento() );
-            addSQL.setString(5, c.getCpf());
+            addSQL.setString(5, c.getEmail() );
+            addSQL.setString(6, c.getSexo() );
+            addSQL.setString(7, c.getCpf());
+            
 
             int linhasAfetadas = addSQL.executeUpdate();
 
@@ -183,6 +188,8 @@ public class ClienteDAO {
                 cliente.setDataNascimento(dataNascimento);
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setEndereco(rs.getString("endereco"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setSexo(rs.getString("sexo"));
                 listaCliente.add(cliente);
 
             }

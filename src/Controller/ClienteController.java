@@ -15,26 +15,30 @@ import model.Cliente;
  */
 public class ClienteController {
 
-    public static boolean Cadastrar(String nome, String cpf, String dataNascimento, String telefone, String endereco) {
+    public static boolean Cadastrar(String nome, String cpf, String dataNascimento, String telefone, String endereco, String email, String sexo) {
         Cliente objCliente = new Cliente();
         objCliente.setCpf(nome);
         objCliente.setNome(cpf);
         objCliente.setDataNascimento(dataNascimento);
         objCliente.setTelefone(telefone);
         objCliente.setEndereco(endereco);
-
-        boolean retorno = ClienteDAO.Cadastrar(objCliente);
+        objCliente.setEmail(email);
+        objCliente.setSexo(sexo);
+        
+       boolean retorno = ClienteDAO.Cadastrar(objCliente);
 
         return retorno;
     }
 
-    public static boolean Atualizar(String cpf,String nome, String dataNascimento, String telefone, String endereco) {
+    public static boolean Atualizar(String cpf,String nome, String dataNascimento, String telefone, String endereco, String email,String sexo) {
         Cliente objCliente = new Cliente();
         objCliente.setCpf(cpf);
         objCliente.setNome(nome);
         objCliente.setDataNascimento(dataNascimento);
         objCliente.setTelefone(telefone);
         objCliente.setEndereco(endereco);
+        objCliente.setEmail(email);
+        objCliente.setSexo(sexo);
 
        boolean retorno = ClienteDAO.Atualizar(objCliente);
         return retorno;
@@ -59,7 +63,9 @@ public class ClienteController {
                 String.valueOf(cliente.getNome()),
                 String.valueOf(cliente.getDataNascimento()),
                 String.valueOf(cliente.getTelefone()),
-                String.valueOf(cliente.getEndereco()),});
+                String.valueOf(cliente.getEndereco()),
+                String.valueOf(cliente.getEmail()),
+                String.valueOf(cliente.getSexo()),});
         }
         return retorno;
     }

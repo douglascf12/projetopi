@@ -14,6 +14,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
     public CadastrarProdutoView() {
         initComponents();
+        setLocationRelativeTo(null);
         CarregaTabela();
     }
 
