@@ -44,8 +44,8 @@ public class ClienteController {
         objCliente.setSexo(sexo);
         
         //grava a informação no banco de dados
-       boolean retorno = ClienteDAO.Cadastrar(objCliente);
-
+        boolean retorno = ClienteDAO.Cadastrar(objCliente);
+        
         return retorno;
     }
 /**
@@ -77,9 +77,7 @@ public class ClienteController {
     }
 
     public static boolean Excluir(String cpf) {
-
         boolean retorno = ClienteDAO.Excluir(cpf);
-
         return retorno;
     }
 

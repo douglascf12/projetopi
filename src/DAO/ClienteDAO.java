@@ -28,7 +28,6 @@ import utils.ConexaoMySql;
  * Está classe recebe, lê e grava os dados de acordo com o banco de dados
  */
 public class ClienteDAO {
-
     PreparedStatement addSQL = null;
     private static Connection conexao;
 /**
@@ -72,13 +71,10 @@ public class ClienteDAO {
             try {
                 if (addSQL != null) {
                     addSQL.close();
-                }
-
-//                
+                } 
             } catch (SQLException ex) {
             }
         }
-
         return retorno;
     }
     /**
@@ -104,7 +100,6 @@ public class ClienteDAO {
             addSQL.setString(5, c.getEmail() );
             addSQL.setString(6, c.getSexo() );
             addSQL.setString(7, c.getCpf());
-            
             //Executando a isntrução SQL
             int linhasAfetadas = addSQL.executeUpdate();
 
@@ -122,8 +117,6 @@ public class ClienteDAO {
                 if (addSQL != null) {
                     addSQL.close();
                 }
-
-//                
             } catch (SQLException ex) {
             }
         }
