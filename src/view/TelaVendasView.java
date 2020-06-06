@@ -67,6 +67,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         btnFinalizarVenda = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -301,10 +302,10 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Data:");
 
-        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-títulos-24 (1).png")); // NOI18N
-
         jLabel17.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel17.setText("R$");
+
+        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-títulos-24 (1).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -322,6 +323,8 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(txtTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel15))
                     .addComponent(dateDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -339,15 +342,16 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(txtTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17)))
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         btnFinalizarVenda.setForeground(new java.awt.Color(0, 102, 0));
-        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-caixa-de-selecção-seleccionada-2-24.png")); // NOI18N
+        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-caixa-de-selecção-seleccionada-2-24.png")); // NOI18N
         btnFinalizarVenda.setText("Finalizar venda");
         btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,7 +360,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         });
 
         jButton6.setForeground(new java.awt.Color(255, 51, 51));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-excluir-24 (4).png")); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-excluir-24 (4).png")); // NOI18N
         jButton6.setText("Cancelar Venda");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,7 +376,7 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jLabel1.setText("______________________________________________________________________________________________________________________________________________");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-centro-de-compras-100.png")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-centro-de-compras-100.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -613,6 +617,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

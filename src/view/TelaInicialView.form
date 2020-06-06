@@ -78,8 +78,8 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
+                          <Component id="jButton5" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="242" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -154,7 +154,7 @@
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\User\Pictures\icons8-excluir-16.png"/>
+              <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-excluir-16.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
@@ -181,7 +181,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\User\Pictures\icons8-casinha-de-cachorro-100.png"/>
+              <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-casinha-de-cachorro-100.png"/>
             </Property>
           </Properties>
         </Component>

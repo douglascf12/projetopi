@@ -110,6 +110,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -133,6 +135,7 @@
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPesquisaCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -228,9 +231,11 @@
         <Component class="javax.swing.JLabel" name="jLabel9">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\User\Pictures\icons8-pesquisar-24 (1).png"/>
+              <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-pesquisar-24 (1).png"/>
             </Property>
           </Properties>
         </Component>
@@ -462,7 +467,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\User\Pictures\icons8-excluir-16.png"/>
+              <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-excluir-16.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

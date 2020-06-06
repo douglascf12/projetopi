@@ -512,6 +512,8 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Component id="txtTotalVendas" min="-2" pref="112" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="dateDataVenda" min="-2" pref="164" max="-2" attributes="0"/>
@@ -535,6 +537,7 @@
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtTotalVendas" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -581,11 +584,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\User\Pictures\icons8-t&#xed;tulos-24 (1).png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
@@ -593,6 +591,13 @@
               <Font name="Dialog" size="12" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="R$"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel18">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-t&#xed;tulos-24 (1).png"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -603,7 +608,7 @@
           <Color blue="0" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\User\Pictures\icons8-caixa-de-selec&#xe7;&#xe3;o-seleccionada-2-24.png"/>
+          <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-caixa-de-selec&#xe7;&#xe3;o-seleccionada-2-24.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Finalizar venda"/>
       </Properties>
@@ -617,7 +622,7 @@
           <Color blue="33" green="33" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\User\Pictures\icons8-excluir-24 (4).png"/>
+          <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-excluir-24 (4).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar Venda"/>
       </Properties>
@@ -651,7 +656,7 @@
     <Component class="javax.swing.JLabel" name="jLabel16">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\User\Pictures\icons8-centro-de-compras-100.png"/>
+          <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\icons8-centro-de-compras-100.png"/>
         </Property>
       </Properties>
     </Component>
