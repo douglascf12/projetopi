@@ -123,19 +123,24 @@ public class ClienteDAO {
 
         return retorno;
     }
-
+    /**
+     * O método <b>Excluir</b> faz a exclusão dos dados do cliente no Banco de Dados pelo seu código
+     * @param cpf
+     * @return bolean true: cliente excluido com sucesso - false: falha ao excluir cliente
+     */
     public static boolean Excluir(String cpf) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement addSQL = null;
 
         try {
+            //Abri a conexão com o banco de dados
             conexao = ConexaoMySql.getConexaoMySQL();
-
+            //instrução SQL
             addSQL = conexao.prepareStatement("DELETE FROM cliente WHERE cpf = ?");
 
             addSQL.setString(1, cpf);
-
+            //Executando a isntrução SQL
             int linhasAfetadas = addSQL.executeUpdate();
 
             if (linhasAfetadas > 0) {

@@ -14,13 +14,26 @@ import javax.swing.JOptionPane;
 import utils.ConexaoMySql;
 import model.Produto;
 import model.Venda;
-
 /**
  *
- * @author Usuário
+ * @Débora Ramos Teixeira Souza
+ * @Andrea Pereira dos Santos
+ * @Carlos Eduardo
+ * @Douglas Cardoso
+ * @Francisco W
+ * @see DAO.RelatorioDAO
+ * 
+ * Está Classe Realiza Consultas de cliente , consulta de produto e 
+ * determina a quantidade de produtos , cadastrando assim a venda
+ * 
  */
-public class VendaDAO {
 
+public class VendaDAO {
+/**
+ *Metódo ConsultasClienteVenda faz a consulta de um cliente já cadastrado no banco
+ *@param cpf
+ * @return String com o nome do cliente, caso cpf estiver na base de dados.
+ */
     public static String ConsultaClienteVenda(String cpf) {
 
         String retorno = null;
@@ -32,12 +45,13 @@ public class VendaDAO {
 
             //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = ConexaoMySql.getConexaoMySQL();
-
+            // Instrução SQL 
             instrucaoSQL = conexao.prepareStatement("SELECT nome FROM cliente where cpf LIKE ?");
+            // Consultando Parametros do Comando SQL
             instrucaoSQL.setString(1, "%" + cpf + '%');
-
+            // Exucutando a instrução SQL
             rs = instrucaoSQL.executeQuery();
-
+            //  se o nome estiver na base da dados retorna o mesmo
             if (rs.next()) {
                 retorno = rs.getString("nome");
             }
@@ -63,11 +77,16 @@ public class VendaDAO {
             } catch (SQLException ex) {
             }
         }
+        // caso não tenha na base de dados retorna valor nulo
         return retorno;
     }
-
+/**
+ *Metodo ConsultDadosProduto consulta produtos existentes na base de dados
+ * @param codPord codigo do produto
+ * @return Objeto da classe Produto portando os dados equivalentes a view
+ */
     public static Produto ConsultDadosProduto(int codProd) {
-
+        // cria objeto para portar dados os necessarios 
         Produto p = new Produto();
 
         ResultSet rs = null;
@@ -79,13 +98,16 @@ public class VendaDAO {
             //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = ConexaoMySql.getConexaoMySQL();
             if (codProd != 0) {
+                // Instrução SQL consultando os dados necessarios para a view 
                 instrucaoSQL = conexao.prepareStatement("SELECT nome_produto,preco FROM produto where cod_produto LIKE ?");  //Caso queira retornar o ID
                 instrucaoSQL.setString(1, "%" + codProd + '%');
             }
-
+            
+            // Executa a instrução SQL
             rs = instrucaoSQL.executeQuery();
-
-            if (rs.next()) {
+         
+            if (rs.next()) { 
+                // Adiciona nomedoproduto e o preço ai objeto
                 p.setNome(rs.getString("nome_produto"));
                 p.setValorUnit(rs.getDouble("preco"));
             }
@@ -111,10 +133,15 @@ public class VendaDAO {
             } catch (SQLException ex) {
             }
         }
-
+        // Retorno Objeto preenchido ou não
         return p;
     }
-
+/**
+ *Método CadastrarVenda cadastra a venda na base de dados
+ * @param pVenda //objeto da classe venda preenchido com cpf , valordacompra , datadavenda
+ * @return retorna um inteiro informando a numero de linhas afetadas
+ * 
+ */
     public static int CadastrarVenda(Venda pVenda) {
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -163,7 +190,11 @@ public class VendaDAO {
 
         return retorno;
     }
-
+/**
+ *Método CadastrarDetalheVenda cadastra na base de dados os detalhes da venda
+ *@param pVenda //objeto da classe venda preenchido para inserção no banco
+ *@return boolean treu: venda cadastrada false :erro ao cadastrar relatorio
+ */
     public static boolean CadastrarDetalheVenda(Venda pVenda) {
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -171,6 +202,7 @@ public class VendaDAO {
         ResultSet rs = null;
         try {
             conexao = ConexaoMySql.getConexaoMySQL();
+             //Adiciono informações na tabela detalhe_venda
 
             instrucaoSQL = conexao.prepareStatement("INSERT INTO detalhe_venda(cpf,cod_produto,id_venda,qtd_vendida) VALUES(?,?,?,?)");
             instrucaoSQL.setString(1, pVenda.getCpf());

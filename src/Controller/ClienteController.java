@@ -75,14 +75,20 @@ public class ClienteController {
        boolean retorno = ClienteDAO.Atualizar(objCliente);
         return retorno;
     }
-
+    /**
+     * O método <b>Excluir</b> recebe o cpf do cliente e passa para classe ClienteDAO, que faz a exclusão no Banco de Dados.
+     * @param cpf
+     * @return boolean true: ação excluir executada - false: falha na exclusão 
+     */
     public static boolean Excluir(String cpf) {
         boolean retorno = ClienteDAO.Excluir(cpf);
         return retorno;
     }
 
     public static ArrayList<String[]> ConsultarCliente(String nome) {
+        //Criando um Array de Cleinte que receberá os dados ClienteDao
         ArrayList<Cliente> listaClientes = new ArrayList<>();
+        
         listaClientes = ClienteDAO.ConsultarCliente(nome);
 
         ArrayList<String[]> retorno = new ArrayList<>();

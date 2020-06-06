@@ -1,7 +1,16 @@
 
 package model;
 
-
+/**
+ *Esta classe contem a estrutura de dados para cadastrar/Alterar/exluir e pesquisar Cliente;
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *  
+ */
+//Definindo os atributos 
 public class Venda {
     private String cpf;
     private String codigo;

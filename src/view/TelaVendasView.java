@@ -455,10 +455,13 @@ public class TelaVendasView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Confere se o cpf é valido
         boolean cpfValido = Validador.ValidaCPF(txtCPF);
         if (cpfValido) {
             txtCPF.setBackground(Color.white);
+            //Converte o texto editado no btn para String
             String cpf = Validador.getCpfSomenteNumeros(txtCPF);
+            //Cria Variavel pra olocar o nome do cliente vinculado com o cpf que foi passado como parametro
             String nome = VendaController.PesquisarNomeVenda(cpf);
             txtNomeCliente.setText(nome);
 
@@ -505,11 +508,13 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //Converte o id do produto que vem como texto em um inteiro
         int codigo = Integer.parseInt(txtCodigoProduto.getText());
-
+        // Cria um objeto da classe Produto
         Produto p = new Produto();
-
+        // esse objeto é preenchido com com os dados equivalentes ao codigo do produto passado como parametro
         p = VendaController.PesquisarProdutosVendas(codigo);
+        //apresenta os valores obtidos da base de dados na view
         txtNomeProduto.setText(p.getNome());
         txtValorProduto.setText(String.valueOf(p.getValorUnit()));
     }//GEN-LAST:event_jButton3ActionPerformed
