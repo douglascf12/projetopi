@@ -8,11 +8,16 @@ package model;
 import java.sql.Date;
 
 /**
- *
- * @author andre
+ *Esta classe contem a estrutura de dados para cadastrar/Alterar/exluir e pesquisar Cliente;
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *  
  */
 public class Cliente {
-
+    //Definindo os atributos;
     private String nome;
     private String cpf;
     private String dataNascimento;

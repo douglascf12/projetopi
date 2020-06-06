@@ -19,24 +19,35 @@ import utils.ConexaoMySql;
 
 /**
  *
- * @author andre
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ * 
+ * Está classe recebe, lê e grava os dados de acordo com o banco de dados
  */
 public class ClienteDAO {
 
     PreparedStatement addSQL = null;
     private static Connection conexao;
-
+/**
+ * Método cadastrar faz a inclusão de um novo cliente no banco de dados
+ * @param c
+ * @return bolean true:inclusão de casdastro realizado - false: falha na inclusão
+ */
     public static boolean Cadastrar(Cliente c) {
         boolean retorno = false;
         PreparedStatement addSQL = null;
 
         try {
-
+           //Abrindo a conexão com o banco de dados
             conexao = ConexaoMySql.getConexaoMySQL();
-
+            //Instrução SQL
             addSQL = conexao.prepareStatement("INSERT INTO Cliente (cpf,nome,dataNascimento,telefone,endereco, email, sexo) VALUES(?, ?, ?, ?, ?,?,?);",
                     Statement.RETURN_GENERATED_KEYS);
-
+           
+            //Adicionando parâmetros ao comando SQL
             addSQL.setString(1, c.getCpf());
             addSQL.setString(2, c.getNome());
             addSQL.setString(3, c.getDataNascimento());
@@ -44,7 +55,7 @@ public class ClienteDAO {
             addSQL.setString(5, c.getEndereco());
             addSQL.setString(6, c.getEmail());
             addSQL.setString(7, c.getSexo());
-
+            //Executando a instrução SQL
             int linhasAfetadas = addSQL.executeUpdate();
 
             if (linhasAfetadas > 0) {
@@ -70,18 +81,22 @@ public class ClienteDAO {
 
         return retorno;
     }
-
+    /**
+     * Método <b>Atualizar</b> faz a alteração de dados do cliente no banco de dados
+     * @param c
+     * @return bolean true:alteração realizada - false: falha ao alterar
+     */
     public static boolean Atualizar(Cliente c) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement addSQL = null;
 
         try {
-
+            //Abri a conexão com o banco de dados 
             conexao = ConexaoMySql.getConexaoMySQL();
-
+            //instrução SQL
             addSQL = conexao.prepareStatement("UPDATE cliente SET nome = ?, telefone=?, endereco=?, dataNascimento=?, email=?, sexo=?  WHERE cpf = ?;");
-
+            //Adicionando parâmetros ao comando SQL
             addSQL.setString(1, c.getNome());
             addSQL.setString(2, c.getTelefone());
             addSQL.setString(3, c.getEndereco());
@@ -90,7 +105,7 @@ public class ClienteDAO {
             addSQL.setString(6, c.getSexo() );
             addSQL.setString(7, c.getCpf());
             
-
+            //Executando a isntrução SQL
             int linhasAfetadas = addSQL.executeUpdate();
 
             if (linhasAfetadas > 0) {

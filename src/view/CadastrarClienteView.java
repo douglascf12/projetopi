@@ -19,20 +19,25 @@ import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 
 /**
- *
- * @author User
+ *Classe responsavel por pegar as informações digitadas
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ * 
  */
 public class CadastrarClienteView extends javax.swing.JFrame {
 
     /**
      * Creates new form cliente
      */
-    Cliente objCliente;
+    Cliente objCliente; // objeto da classe cliente
     public String modoTela = "Criação";
 
     public CadastrarClienteView() {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);//definindo a posição centralizada no momento que o projeto for executado
         CarregaTabela();
 
     }
@@ -123,8 +128,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         });
         tabCli.setViewportView(tblPesquisar);
 
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-pesquisar-24 (1).png")); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,11 +161,11 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(txtPsqNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(bntPsqCli)
-                        .addComponent(jLabel14))
+                        .addComponent(bntPsqCli))
                     .addComponent(jLabel13))
                 .addGap(29, 29, 29)
                 .addComponent(tabCli, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
@@ -294,7 +297,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         btnSair.setBackground(new java.awt.Color(153, 153, 153));
         btnSair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnSair.setForeground(new java.awt.Color(0, 0, 0));
-        btnSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-excluir-16.png")); // NOI18N
         btnSair.setText("Sair");
         btnSair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -491,14 +493,18 @@ public class CadastrarClienteView extends javax.swing.JFrame {
     private void txtPsqNomeCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPsqNomeCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPsqNomeCliActionPerformed
-
+    /**
+     * Recebe as informações de cadastro digitadas na view
+     * @param evt 
+     */    
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+       //validando dados 
         boolean cpfValido = Validador.ValidaCPF(txtCpfCli);
         boolean nomeValido = Validador.ValidaNomes(txtNomeCliente);
         boolean enderecoValido = Validador.ValidaNomes(txtEnderecoCliente);
         if (modoTela == "Criação") {
             if (cpfValido && nomeValido && enderecoValido) {
-                //Verifica se o CPF informado é válido para prosseguir com o cadastramento
+                //Verifica se o CPF informado é válido para prosseguir com o cadastro
                 if (Validador.ValidaNomes(txtNomeCliente)) {
                     //Capturando Informações Da View
                     String cpf = Validador.getCpfSomenteNumeros(txtCpfCli);

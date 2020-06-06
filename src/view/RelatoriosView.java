@@ -66,7 +66,6 @@ public class RelatoriosView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         btnSair.setBackground(new java.awt.Color(153, 153, 153));
-        btnSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-excluir-16.png")); // NOI18N
         btnSair.setText("Sair");
         btnSair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -88,10 +87,8 @@ public class RelatoriosView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblVendas);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel2.setText("De:");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("Até:");
 
         jButton1.setText("Pesquisar");
@@ -112,8 +109,6 @@ public class RelatoriosView extends javax.swing.JFrame {
                 btnDetalheVendaActionPerformed(evt);
             }
         });
-
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-pesquisar-24 (1).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,9 +156,9 @@ public class RelatoriosView extends javax.swing.JFrame {
                     .addComponent(cltDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(cltDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jLabel10))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel10)
+                        .addComponent(jButton1))
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
