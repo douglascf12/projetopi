@@ -4,6 +4,7 @@ import Controller.RelatorioController;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,7 +57,7 @@ public class RelatoriosView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("De:");
@@ -78,7 +79,6 @@ public class RelatoriosView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDetalheVenda);
 
-        btnSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-excluir-24 (3).png")); // NOI18N
         btnSair.setText("Sair");
         btnSair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -109,8 +109,6 @@ public class RelatoriosView extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Detalhes Venda");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-pesquisar-24 (1).png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,13 +168,15 @@ public class RelatoriosView extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cltDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSair)
+                        .addGap(59, 59, 59))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSair, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(59, 59, 59))
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
         );
 
         pack();
@@ -187,30 +187,41 @@ public class RelatoriosView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            
-            //Valida se os campos datas estão preenchidos
+         //Valida se os campos datas estão preenchidos
         if (cltDataInicio.getDate() != null && cltDataFim.getDate() != null) {
             //Formata data para modelo de reconhecimento do banco de dados
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            String dataInicio = formato.format(cltDataInicio.getDate());
-            String dataFim = formato.format(cltDataFim.getDate());
-            //Cria Array de String 
-            ArrayList<String[]> listaVenda = new ArrayList();
-            // Este Array criado chama a controller passado as datas como parâmetro
-            listaVenda = RelatorioController.SalvarRelatorio(dataInicio, dataFim);
-            DefaultTableModel modelo = (DefaultTableModel) tblVendas.getModel();
-            modelo.setRowCount(0);
-            //ListaVenda tem como retorno um vetor de String  
-            //Percorremos o vetor e colocamos ele na tabela tblVendas
-            for (String[] venda : listaVenda) {
-                modelo.addRow(new String[]{
-                    venda[0],
-                    venda[1],
-                    venda[2],
-                    venda[3]
-                });
-            }
+            SimpleDateFormat formato1 = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date() ;
+            Date date1 = new Date() ;
+            date = cltDataInicio.getDate();
+            date1 = cltDataFim.getDate();
+            if (date.before(date1)) {
+                
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
+                String dataInicio = formato.format(cltDataInicio.getDate());
+                String dataFim = formato.format(cltDataFim.getDate());
+
+                //Cria Array de String 
+                ArrayList<String[]> listaVenda = new ArrayList();
+                // Este Array criado chama a controller passado as datas como parâmetro
+                listaVenda = RelatorioController.SalvarRelatorio(dataInicio, dataFim);
+                DefaultTableModel modelo = (DefaultTableModel) tblVendas.getModel();
+                modelo.setRowCount(0);
+                //ListaVenda tem como retorno um vetor de String  
+                //Percorremos o vetor e colocamos ele na tabela tblVendas
+                for (String[] venda : listaVenda) {
+                    modelo.addRow(new String[]{
+                        venda[0],
+                        venda[1],
+                        venda[2],
+                        venda[3]
+                    });
+                }
+            } else 
+                JOptionPane.showMessageDialog(null, "A data de término dever ser maior que a data de\n"
+                        + "início");
+            
         } else {// Campos não preenchidos
             JOptionPane.showMessageDialog(null, "Preencha os campos de data.");
             cltDataInicio.setBackground(Color.red);
@@ -218,9 +229,10 @@ public class RelatoriosView extends javax.swing.JFrame {
 
         }
 
-         /**
-          * Método de preenchimento do Relatório analitico 
-          */
+        /**
+         * Método de preenchimento do Relatório Sintético
+         */
+                     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnDetalheVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalheVendaActionPerformed

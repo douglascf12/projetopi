@@ -6,6 +6,7 @@
 package view;
 
 import Controller.VendaController;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -61,16 +62,16 @@ public class TelaVendasView extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel5 = new javax.swing.JPanel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        txtTotalVendas = new javax.swing.JFormattedTextField();
         dateDataVenda = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        btnFinalizarVenda = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -282,11 +283,11 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total de Vendas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
-        jFormattedTextField2.setEditable(false);
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtTotalVendas.setEditable(false);
+        txtTotalVendas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtTotalVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
+                txtTotalVendasActionPerformed(evt);
             }
         });
 
@@ -311,7 +312,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addGap(14, 14, 14)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -324,19 +325,17 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-caixa-de-selecção-seleccionada-2-24.png")); // NOI18N
-        jButton5.setText("Finalizar venda");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnFinalizarVenda.setText("Finalizar venda");
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnFinalizarVendaActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-excluir-24 (3).png")); // NOI18N
         jButton6.setText("Cancelar Venda");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,8 +345,6 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Viner Hand ITC", 1, 11)); // NOI18N
         jLabel13.setText("TLG Admin");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-centro-de-compras-100.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -378,7 +375,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(69, 69, 69)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton6)
                                         .addGap(48, 48, 48)))))
@@ -386,7 +383,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton5, jButton6});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnFinalizarVenda, jButton6});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +401,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton6)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -414,7 +411,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton5, jButton6});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnFinalizarVenda, jButton6});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -434,6 +431,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        double valorTotal = 0;
         boolean condicao1 = Validador.ValidaCPF(txtCPF);
         boolean condicao2 = Validador.ValidaNomes(txtNomeCliente);
         boolean condicao3 = Validador.ValidarNumeros(txtCodigoProduto);
@@ -450,8 +448,18 @@ public class TelaVendasView extends javax.swing.JFrame {
                 String.valueOf(txtQuantidadeProduto.getText()),
                 String.valueOf("")
             });
+            for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
+                String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
+                String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
+                Double ValorParcial = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
+                valorTotal = valorTotal + ValorParcial;
+            }
+            txtTotalVendas.setText(Double.toString(valorTotal));
         }
-
+        txtCodigoProduto.setText(null);
+        txtNomeProduto.setText(null);
+        txtQuantidadeProduto.setText(null);
+        txtValorProduto.setText(null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -478,46 +486,47 @@ public class TelaVendasView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+    private void txtTotalVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendasActionPerformed
 
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_txtTotalVendasActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
         Double ValorTotal = 0.0;
         int id_venda = 0;
-        boolean retorno=false;
+        boolean retorno = false;
         if (tblCarrinhoCompras.getRowCount() > 0) {
             if (dateDataVenda.getDate() != null) {
-                dateDataVenda.setBackground(Color.white);
-                //Calculo o valor Total dos da compra
-                for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
-                    String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
-                    String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
-                    Double ValorParcial = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
-                    ValorTotal = ValorTotal + ValorParcial;
-                }
+                dateDataVenda.setBackground(Color.white);                
+                ValorTotal=Double.parseDouble(txtTotalVendas.getText());
                 String cpf = Validador.getCpfSomenteNumeros(txtCPF);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String dataVenda = sdf.format(dateDataVenda.getDate());
                 //Chamo a função que calculará o Relatório sintético e vai retornar o ID_VENDA
                 id_venda = VendaController.CadastrarVenda(cpf, dataVenda, ValorTotal);
-                
+
                 //Com o ID da Venda retornado, faço um laço para adicionar os produtos Vendidos a tabela Detalhe_Venda
                 for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
                     String codigo = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 0).toString();
                     String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
-                    retorno=VendaController.CadastrarDetalheVenda(cpf, id_venda, codigo, qtdVendida);
-                }                
+                    retorno = VendaController.CadastrarDetalheVenda(cpf, id_venda, codigo, qtdVendida);
+                }
+                txtNomeCliente.setText(null);
+                txtCPF.setText(null);
+                dateDataVenda.setDate(null);
+                txtTotalVendas.setText(null);
+                DefaultTableModel modelo = (DefaultTableModel) tblCarrinhoCompras.getModel();
+                modelo.setRowCount(0);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Adicione a data da venda.");
                 dateDataVenda.setBackground(Color.red);
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Adicione algum produto ao carrinho.");
         }
 
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,13 +564,12 @@ public class TelaVendasView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFinalizarVenda;
     private com.toedter.calendar.JDateChooser dateDataVenda;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -587,6 +595,7 @@ public class TelaVendasView extends javax.swing.JFrame {
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtQuantidadeProduto;
+    private javax.swing.JFormattedTextField txtTotalVendas;
     private javax.swing.JTextField txtValorProduto;
     // End of variables declaration//GEN-END:variables
 }

@@ -180,7 +180,7 @@ public class VendaDAO {
             //Exercuto a Instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
-                JOptionPane.showMessageDialog(null, "Relatório Analítico cadastrado!");
+                JOptionPane.showMessageDialog(null, "Venda cadastrada!");
                 return true;
             } else {
                 JOptionPane.showConfirmDialog(null, "Erro ao cadastrar Relatório!");

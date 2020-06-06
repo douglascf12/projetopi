@@ -39,7 +39,7 @@ public class TelaInicialView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -64,7 +64,6 @@ public class TelaInicialView extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-excluir-24 (3).png")); // NOI18N
         jButton5.setText("Sair");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,8 +80,6 @@ public class TelaInicialView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 0, 48)); // NOI18N
         jLabel1.setText("TLG  Admin");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Pictures\\icons8-casinha-de-cachorro-100.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

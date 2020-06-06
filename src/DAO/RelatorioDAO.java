@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import model.Relatorio;
 import model.Venda;
 import utils.ConexaoMySql;
@@ -53,7 +55,10 @@ public class RelatorioDAO {
                 r.setCodigo(rs.getString("id_venda"));
                 r.setCpf(rs.getString("cpf"));
                 r.setValorTotal(rs.getDouble("valor_compra"));
-                r.setDatadavenda(rs.getString("datavenda"));
+                Date data = rs.getDate("datavenda");
+                SimpleDateFormat formatdata = new SimpleDateFormat("dd/MM/yyyy");
+                String datavenda = formatdata.format(data);
+                r.setDatadavenda(datavenda);
                 //adiciona r em listaVenda 
                 listaVenda.add(r);
 
@@ -109,7 +114,10 @@ public class RelatorioDAO {
                 r.setIdVenda(rs.getInt("id_venda"));
                 r.setCodigo(rs.getString("cod_produto"));
                 r.setQtdVendida(rs.getString("qtd_vendida"));
-                r.setDatadavenda(rs.getString("datavenda"));
+                Date data = rs.getDate("datavenda");
+                SimpleDateFormat formatdata = new SimpleDateFormat("dd/MM/yyyy");
+                String datavenda = formatdata.format(data);
+                r.setDatadavenda(datavenda);
                 //adiciona r em listaVenda 
                 listaVenda.add(r);
 
