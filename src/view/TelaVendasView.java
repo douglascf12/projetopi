@@ -305,7 +305,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel17.setText("R$");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-títulos-24 (1).png")); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-títulos-24 (1).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -351,7 +351,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         );
 
         btnFinalizarVenda.setForeground(new java.awt.Color(0, 102, 0));
-        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-caixa-de-selecção-seleccionada-2-24.png")); // NOI18N
+        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-caixa-de-selecção-seleccionada-2-24.png")); // NOI18N
         btnFinalizarVenda.setText("Finalizar venda");
         btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,7 +360,7 @@ public class TelaVendasView extends javax.swing.JFrame {
         });
 
         jButton6.setForeground(new java.awt.Color(255, 51, 51));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-excluir-24 (4).png")); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-excluir-24 (4).png")); // NOI18N
         jButton6.setText("Cancelar Venda");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,7 +376,7 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         jLabel1.setText("______________________________________________________________________________________________________________________________________________");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\icons8-centro-de-compras-100.png")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\icons8-centro-de-compras-100.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
