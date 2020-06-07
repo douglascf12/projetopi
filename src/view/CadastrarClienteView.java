@@ -502,6 +502,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
         boolean cpfValido = Validador.ValidaCPF(txtCpfCli);
         boolean nomeValido = Validador.ValidaNomes(txtNomeCliente);
         boolean enderecoValido = Validador.ValidaNomes(txtEnderecoCliente);
+        
         if (modoTela == "Criação") {
             if (cpfValido && nomeValido && enderecoValido) {
                 //Verifica se o CPF informado é válido para prosseguir com o cadastro

@@ -16,7 +16,7 @@ import model.Produto;
 
 public class ProdutoController {
 /**
- * O método <b>Cadastrar</b> recebe as informações de cadastro contidas na View e manda gravar no banco de dados
+ * O método <b>Cadastrar</b> recebe as informações de cadastro contidas na CadastrarClienteView e repassa para ProdutoDao cadastar no Banco de Dados
  * @param codigo
  * @param nome
  * @param descricao
@@ -26,9 +26,9 @@ public class ProdutoController {
  * @return boolean true:ação cadastrar executada - false:falha no cadastro
  */    
     public static boolean Cadastrar(int codigo, String nome, String descricao, double valorUnit, int qtdEstoque, String setor) {
-        //criando um objeto do tipo Produto
+        //Criado um objeto do tipo Produto
         Produto objProduto = new Produto();
-        //o objeto criado recebe as informações adicionadas na CadastrarProdutoView
+        //O objeto recebe os valores repassado no paramento da classe
         objProduto.setCodigo(codigo);
         objProduto.setNome(nome);
         objProduto.setDescricao(descricao);
@@ -36,9 +36,9 @@ public class ProdutoController {
         objProduto.setQtdEstoque(qtdEstoque);
         objProduto.setSetor(setor);
         
-        //grava as informação no banco de dados
+        //Solicita a classe ProdutoDAO o cadatsro no banco de dados do objeto criado
         boolean retorno = ProdutoDAO.Cadastrar(objProduto);
-
+        //retorna um boolean para saber se o objeto foi cadastrado no Bando de Dados
         return retorno;
     }
 /**

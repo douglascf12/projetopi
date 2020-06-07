@@ -25,7 +25,7 @@ public class Cliente {
     private String endereco;
     private String email;
     private String sexo;
-
+    //Métodos da classe
     public String getEmail() {
         return email;
     }

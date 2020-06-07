@@ -7,15 +7,26 @@ import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import utils.Validador;
 
+/**
+ *Classe responsavel por pegar as informações digitadas
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ */
 public class CadastrarProdutoView extends javax.swing.JFrame {
 
-    Produto objProduto;
+    
+    Produto objProduto; // objeto da classe cliente
     public String modoTela = "Criação";
-
+/**
+ * O método <b>CadastrarProdutoView</b> tem como função carregar a tela de Cadastro de Produtos
+ */
     public CadastrarProdutoView() {
         initComponents();
-        setLocationRelativeTo(null);
-        CarregaTabela();
+        setLocationRelativeTo(null); //define a posição centralizada no momento que a tela for aberta
+        CarregaTabela(); //sempre recarrega a página após uma ação em algum botão
     }
 
     /**
@@ -386,31 +397,38 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     private void txtQtdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdEstoqueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQtdEstoqueActionPerformed
-
+    
+    
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-
-        boolean r1 = Validador.ValidaNomes(txtNome);
-        boolean r2 = Validador.ValidarDecimais(txtValorUnit);
-        boolean r3 = Validador.ValidarNumeros(txtQtdEstoque);
-        boolean r4 = Validador.ValidaComboBox(jcbSetor);
-
-        if (modoTela == "Criação") {
-            if (r1 && r2 && r3 && r4) {
+        //Essas variaveis são responsaveis por saber se o preenchimento dos campos está correto retornando um boolean
+        boolean r1 = Validador.ValidaNomes(txtNome); //verifica se o campo nome do produto foi preenchido
+        boolean r2 = Validador.ValidarDecimais(txtValorUnit); //verifica se o campo de valor unitário do produto foi preenchido
+        boolean r3 = Validador.ValidarNumeros(txtQtdEstoque); //verifica se o campo de quatindade do produto foi preenchido
+        boolean r4 = Validador.ValidaComboBox(jcbSetor); //verifica se o setor do produto foi selecionado
+        
+        
+        if (modoTela == "Criação") { // inicialmente modoTela tem valor de "Criação" se em algum momento for alterado cai no else, que corresponde a alteração do produto
+            if (r1 && r2 && r3 && r4) { // condição que verifica se todos os campos do produto estão preenchido
                 try {
-
+                    // variaveis que recebem os valores preenchidos nos campos
                     int codigo = Integer.parseInt(txtCodigo.getText());
                     String nome = txtNome.getText();
                     String descricao = txtDescricao.getText();
                     double valorUnit = Double.parseDouble(txtValorUnit.getText());
                     int qtdEstoque = Integer.parseInt(txtQtdEstoque.getText());
                     String setor = (String) jcbSetor.getSelectedItem();
-
+                    
+                    //variavel que chamada a classe ProdutoController e passa os atributos do produto,
+                    //para que a ProdutoController solicite a inclusão do produto no Bando de Dados, retornando true ou false
                     boolean retorno = ProdutoController.Cadastrar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
-
-                    if (retorno == true) {
-                        JOptionPane.showMessageDialog(null, "Produto cadastrado com Sucesso", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
-                        CarregaTabela();
+                    
+                    //condição que verifica se retorno da solicitação do cadastro do produto foi realizado
+                    if(retorno == true) {
+                        //se o retorno for true - exibe a mensagem do produto cadastro com sucesso
+                        JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
+                        CarregaTabela(); // solicita o recarregamento da página
                     } else {
+                        //se o retorno for false - exibe a mensagem do falha ao cadastrar produto
                         JOptionPane.showMessageDialog(null, "Falha ao cadastrar produto!", "Falha", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception e) {
@@ -418,7 +436,8 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 }
             }
 
-        } else {
+        } else { // faz a alteração do produto
+            // variaveis que recebem os valores preenchidos nos campos
             int codigo = Integer.parseInt(txtCodigo.getText());
             String nome = txtNome.getText();
             String descricao = txtDescricao.getText();
@@ -428,6 +447,8 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
             //Passo as informações da View para Controller
             try {
+                //variavel que chamada a classe ProdutoController e passa os atributos do produto,
+                //para que a ProdutoController solicite a inclusão do produto no Bando de Dados, retornando true ou false
                 boolean retorno = ProdutoController.Atualizar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
                 System.out.println(retorno);
                 JOptionPane.showMessageDialog(this, "Produto alterado com sucesso!", "Produto Alterado", JOptionPane.INFORMATION_MESSAGE);
@@ -439,7 +460,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             }
         }
 
-        //após cadastrar limpa os campos
+        //Após cadastrar/alterar o produto limpa os campos
         txtCodigo.setText(null);
         txtNome.setText(null);
         txtDescricao.setText(null);
@@ -468,15 +489,18 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     }
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        //Validador.ValidarNumeros(txtCodPsq);
+        // faz a pesquisa do produto pelo seu código, verificando se o campo está preenchido
         Validador.ValidarNumeros(txtPesquisaCodigo);
         ArrayList<String[]> listaProduto;
+        // Array que recebe todos os atributos do produto pesquisado
         listaProduto = ProdutoController.ConsultarProduto(txtPesquisaCodigo.getText());
-
+        
+        //passo o objeto pro para a tabela da pesquisa
         DefaultTableModel modelo = (DefaultTableModel) tblPesquisarPro.getModel();
         modelo.setRowCount(0);
-
-        for (String[] produto : listaProduto) {
+        
+        // laço que faz a adição do valor de cada produto na tabela
+        for(String[] produto : listaProduto) {
             modelo.addRow(new String[]{
                 produto[0],
                 produto[1],
@@ -487,20 +511,23 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        dispose();
+        dispose(); // fecha a janela ao clicar no botão sair
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        //Recuperada as informações da linha para passar a tela de Cadastro/Alteração
         if (tblPesquisarPro.getRowCount() > 0) {
             //Resgato o número da linha pelo JTable
             int numeroLinha = tblPesquisarPro.getSelectedRow();
-
+            //recupera os dados do produto pela linha selecionada
             String codigo = tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString();
             String nome = tblPesquisarPro.getModel().getValueAt(numeroLinha, 1).toString();
             String descricao = tblPesquisarPro.getModel().getValueAt(numeroLinha, 2).toString();
             String valorUnit = tblPesquisarPro.getModel().getValueAt(numeroLinha, 3).toString();
             String qtdEstoque = tblPesquisarPro.getModel().getValueAt(numeroLinha, 4).toString();
             String setor = tblPesquisarPro.getModel().getValueAt(numeroLinha, 5).toString();
+            
+            //recebe o(s) novo(s) valor(es) do(s) campo(s)
             txtCodigo.setText(codigo);
             txtNome.setText(nome);
             txtDescricao.setText(descricao);
@@ -515,21 +542,26 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        
         String nome = (this.txtNome.getText());
-
-        if (tblPesquisarPro.getRowCount() > 0) {
-            int numeroLinha = tblPesquisarPro.getSelectedRow();
+        
+        if(tblPesquisarPro.getRowCount() > 0) { //verifica se alguma linha foi selecionada
+            int numeroLinha = tblPesquisarPro.getSelectedRow(); // recebe o número da linha selecionada
+            
+            //recupera o código do produto seleciona através da linha selecionada
             int codigo = Integer.parseInt(tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString());
-            //Chamando Controller
+            
+            //chama a o método Excluir da ProdutoController e passa o código do produto que foi recuperado através da linha selecionada
             boolean retorno = ProdutoController.Excluir(codigo);
-            if (retorno == true) {
-                JOptionPane.showMessageDialog(null, "Produto excluido com Sucesso", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
+            
+            // condição que verifica se o retorno do método Excluir da ProdutoController foi true ou false
+            if (retorno == true) { // se true - exibe a mensagem que o produto foi excluido
+                JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
                 CarregaTabela();
-            } else {
+            } else { // se false - exibe a mensagem que o produto não foi excluido
                 JOptionPane.showMessageDialog(null, "Falha ao excluir produto!", "Falha", JOptionPane.ERROR_MESSAGE);
             }
-
-        } else {
+        } else { // exibe uma mensagem para que o usuario selecione um produto da lista, caso o usuário não tenha selecionado
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela para excluir!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed

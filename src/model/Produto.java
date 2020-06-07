@@ -1,14 +1,23 @@
 package model;
 
+/**
+ *Esta classe contem a estrutura de dados para cadastrar/alterar/exluir e pesquisar Produto;
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *  
+ */
 public class Produto {
-
+    //Atributos da classe;
     private int codigo;
     private String nome;
     private String descricao;
     private double valorUnit;
     private int qtdEstoque;
     private String setor;
-
+    //métodos da classe
     public int getCodigo() {
         return codigo;
     }
