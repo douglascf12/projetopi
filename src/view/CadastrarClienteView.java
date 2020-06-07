@@ -103,6 +103,7 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             }
         });
 
+        bntPsqCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-pesquisar-24 (1).png"))); // NOI18N
         bntPsqCli.setText("Pesquisar");
         bntPsqCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,18 +141,18 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(txtPsqNomeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bntPsqCli, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
+                                .addGap(178, 178, 178)
                                 .addComponent(jLabel8))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(bntPsqCli, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel13)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 147, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -285,7 +286,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         btnCadastrarCliente.setBackground(new java.awt.Color(153, 153, 153));
         btnCadastrarCliente.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnCadastrarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnCadastrarCliente.setText("Cadastrar / Atualizar");
         btnCadastrarCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +296,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         btnSair.setBackground(new java.awt.Color(153, 153, 153));
         btnSair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnSair.setForeground(new java.awt.Color(0, 0, 0));
         btnSair.setText("Sair");
         btnSair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -331,7 +330,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         btnAtualizarCliente.setBackground(new java.awt.Color(153, 153, 153));
         btnAtualizarCliente.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnAtualizarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnAtualizarCliente.setText("Editar");
         btnAtualizarCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnAtualizarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -342,7 +340,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         btnExcluirCliente.setBackground(new java.awt.Color(153, 153, 153));
         btnExcluirCliente.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnExcluirCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnExcluirCliente.setText("Excluir");
         btnExcluirCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
