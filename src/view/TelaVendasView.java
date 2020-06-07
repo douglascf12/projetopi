@@ -518,7 +518,10 @@ public class TelaVendasView extends javax.swing.JFrame {
         txtNomeProduto.setText(p.getNome());
         txtValorProduto.setText(String.valueOf(p.getValorUnit()));
     }//GEN-LAST:event_jButton3ActionPerformed
-
+/**
+ * jToogleButton: Botão que remove o iten do carrinho selecionado pelo cliente
+ * @param evt 
+ */
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         DefaultTableModel dtm = (DefaultTableModel) tblCarrinhoCompras.getModel();
         if (tblCarrinhoCompras.getSelectedRow() >= 0) {
@@ -532,12 +535,17 @@ public class TelaVendasView extends javax.swing.JFrame {
     private void txtTotalVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendasActionPerformed
 
     }//GEN-LAST:event_txtTotalVendasActionPerformed
-
+/**
+ * btnFinalizarVenda: Botão responsável por passar os dados da venda para a Controller
+ * @param evt 
+ */
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-        Double ValorTotal = 0.0;
+        Double ValorTotal;
         int id_venda = 0;
         boolean retorno = false;
+        //Verifica se há itens adicionados ao carrinho
         if (tblCarrinhoCompras.getRowCount() > 0) {
+            //Verifico se a data está preenchida
             if (dateDataVenda.getDate() != null) {
                 dateDataVenda.setBackground(Color.white);                
                 ValorTotal=Double.parseDouble(txtTotalVendas.getText());
@@ -553,6 +561,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                     String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
                     retorno = VendaController.CadastrarDetalheVenda(cpf, id_venda, codigo, qtdVendida);
                 }
+                //Após adicionar o produto ao carrinho, reseta os dados para adicionar um novo produto
                 txtNomeCliente.setText(null);
                 txtCPF.setText(null);
                 dateDataVenda.setDate(null);

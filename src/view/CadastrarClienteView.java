@@ -587,14 +587,20 @@ public class CadastrarClienteView extends javax.swing.JFrame {
             }
         }
     }
+    /**
+     * btnPsqCli: Consulta os clientes no banco recebendo o nome passado pelo usuário 
+     * @param evt 
+     */
     private void bntPsqCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntPsqCliActionPerformed
+        //Valido se o campo nome está preenchido somente com letras e se nao está nullo
         Validador.ValidaNomes(txtPsqNomeCli);
         ArrayList<String[]> listaCliente;
+        //Chamo a Controller passando o nome do cliente 
         listaCliente = ClienteController.ConsultarCliente(txtPsqNomeCli.getText());
 
         DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
         modelo.setRowCount(0);
-
+        //For utilizado para adicionar cada vetor do Array em uma linha da tabela
         for (String[] cliente : listaCliente) {
             modelo.addRow(new String[]{
                 cliente[0],

@@ -84,15 +84,20 @@ public class ClienteController {
         boolean retorno = ClienteDAO.Excluir(cpf);
         return retorno;
     }
-
+    
+    /**
+     * O método <b>ConsultarCliente</b> faz a consulta dos dados do cliente no Banco de Dados pelo seu nomr
+     * @param nome 
+     * @return ArrayList<String[]>: clientes cadastrados no sistema - : se não houver clientes retorna null
+     */
     public static ArrayList<String[]> ConsultarCliente(String nome) {
-        //Criando um Array de Cleinte que receberá os dados ClienteDao
+        //Criando um Array de Cliente que receberá os dados ClienteDao
         ArrayList<Cliente> listaClientes = new ArrayList<>();
-        
+        //Chamo a ConsultarClienteDAO passando o nome do cliente
         listaClientes = ClienteDAO.ConsultarCliente(nome);
 
         ArrayList<String[]> retorno = new ArrayList<>();
-
+        //Passo o cliente para um vetor de String
         for (Cliente cliente : listaClientes) {
             retorno.add(new String[]{
                 String.valueOf(cliente.getCpf()),

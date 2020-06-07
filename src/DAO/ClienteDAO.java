@@ -100,7 +100,7 @@ public class ClienteDAO {
             addSQL.setString(5, c.getEmail() );
             addSQL.setString(6, c.getSexo() );
             addSQL.setString(7, c.getCpf());
-            //Executando a isntrução SQL
+            //Executando a instrução SQL
             int linhasAfetadas = addSQL.executeUpdate();
 
             if (linhasAfetadas > 0) {
@@ -167,10 +167,14 @@ public class ClienteDAO {
 
         return retorno;
     }
+    /**
+     * O método <b>Consultar</b> realiza a consunta de clientes cadastrados no Banco de Dados
+     * @param nome - nome a ser buscado no Banco (recebido da controller).
+     * @return ArrayList<Cliente>: Lista de clientes do banco, se não houver clientes retorna null;
+     */
 
     public static ArrayList<Cliente> ConsultarCliente(String nome) {
 
-        boolean retorno = false;
         ArrayList<Cliente> listaCliente = new ArrayList<>();
 
         ResultSet rs = null;
@@ -182,6 +186,7 @@ public class ClienteDAO {
             //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = ConexaoMySql.getConexaoMySQL();
             if (nome != null) {
+                //Instrução SQL
                 instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente where nome LIKE ?");  //Caso queira retornar o ID
                 instrucaoSQL.setString(1, "%" + nome + '%');
             } else {
@@ -189,7 +194,7 @@ public class ClienteDAO {
             }
 
             rs = instrucaoSQL.executeQuery();
-
+            //Enquanto houver clientes no Banco, passo eles para um objeto e adiciono no ArrayList
             while (rs.next()) {
 
                 Cliente cliente = new Cliente();
