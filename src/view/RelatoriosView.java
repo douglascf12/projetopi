@@ -15,11 +15,11 @@ import javax.swing.table.DefaultTableModel;
  */
 /**
  *
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
  * @author Débora Ramos Teixeira Souza
- * @Andrea Pereira dos Santos
- * @Carlos Eduardo
- * @Douglas Cardoso
- * @Francisco W
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
  *
  * @see View.RelatorioView
  */
@@ -53,10 +53,10 @@ public class RelatoriosView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cltDataFim = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnDetalheVenda = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalheVenda = new javax.swing.JTable();
@@ -98,9 +98,6 @@ public class RelatoriosView extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Viner Hand ITC", 1, 11)); // NOI18N
-        jLabel8.setText("TLG Admin");
-
         btnDetalheVenda.setBackground(new java.awt.Color(153, 153, 153));
         btnDetalheVenda.setText("Exibir Detalhes");
         btnDetalheVenda.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -109,6 +106,8 @@ public class RelatoriosView extends javax.swing.JFrame {
                 btnDetalheVendaActionPerformed(evt);
             }
         });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\img\\icons8-pesquisar-24 (1).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,6 +132,8 @@ public class RelatoriosView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel10)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(118, 118, 118))
@@ -141,11 +142,6 @@ public class RelatoriosView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDetalheVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(333, 333, 333)
-                    .addComponent(jLabel8)
-                    .addContainerGap(363, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +154,9 @@ public class RelatoriosView extends javax.swing.JFrame {
                     .addComponent(cltDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel10)
-                        .addComponent(jButton1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel8)))
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,11 +166,6 @@ public class RelatoriosView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnDetalheVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(103, 103, 103))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(120, 120, 120)
-                    .addComponent(jLabel8)
-                    .addContainerGap(120, Short.MAX_VALUE)))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -278,20 +271,20 @@ public class RelatoriosView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          //Valida se os campos datas estão preenchidos
         if (cltDataInicio.getDate() != null && cltDataFim.getDate() != null) {
-            //Formata data para modelo de reconhecimento do banco de dados
-            SimpleDateFormat formato1 = new SimpleDateFormat("yyyy-MM-dd");
+            // 1º Variáveis recebem objeto de data para certificar que data posterior da pesquisada seja maior,
+            //que a data anterior
             Date date = new Date() ;
             Date date1 = new Date() ;
             date = cltDataInicio.getDate();
             date1 = cltDataFim.getDate();
-            if (date.before(date1)) {
-                
+            if (date.before(date1)) {//Checagem de 1º 
+                //Formata data para passar ao banco de dados do formato que ele lê
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
                 String dataInicio = formato.format(cltDataInicio.getDate());
                 String dataFim = formato.format(cltDataFim.getDate());
 
-                //Cria Array de String 
+                //Cria Array de String em listaVenda
                 ArrayList<String[]> listaVenda = new ArrayList();
                 // Este Array criado chama a controller passado as datas como parâmetro
                 listaVenda = RelatorioController.SalvarRelatorio(dataInicio, dataFim);
@@ -307,7 +300,7 @@ public class RelatoriosView extends javax.swing.JFrame {
                         venda[3]
                     });
                 }
-            } else 
+            } else //1º Caso data posterior seja menor que anterior
                 JOptionPane.showMessageDialog(null, "A data de término dever ser maior que a data de\n"
                         + "início");
             
@@ -316,12 +309,7 @@ public class RelatoriosView extends javax.swing.JFrame {
             cltDataInicio.setBackground(Color.red);
             cltDataFim.setBackground(Color.red);
 
-        }
-
-        /**
-         * Método de preenchimento do Relatório Sintético
-         */
-                     
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnDetalheVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalheVendaActionPerformed
@@ -333,7 +321,7 @@ public class RelatoriosView extends javax.swing.JFrame {
             int idVenda = Integer.parseInt(tblVendas.getModel().getValueAt(numeroLinha, 0).toString());
             //Cria Array de String - listaDetalhe
             ArrayList<String[]> listaDetalhe = new ArrayList();
-            //Lista detalhe chama a RelatorioController passando o idVenda
+            //ListaDetalhe chama a RelatorioController passando o idVenda como parâmetro
             listaDetalhe = RelatorioController.RelatorioDetalheVenda(idVenda);
             DefaultTableModel modelo = (DefaultTableModel) tblDetalheVenda.getModel();
             modelo.setRowCount(0);
@@ -353,10 +341,7 @@ public class RelatoriosView extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnDetalheVendaActionPerformed
-
-         /**
-          * Método de preenchimento do Relatório Analítico 
-          */
+ 
     /**
      * @param args the command line arguments
      */

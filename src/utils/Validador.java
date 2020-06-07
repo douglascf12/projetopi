@@ -14,7 +14,12 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author w_olv
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *
  */
 public class Validador {
 

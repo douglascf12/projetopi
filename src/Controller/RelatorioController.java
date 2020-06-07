@@ -12,16 +12,17 @@ import model.Venda;
 
 /**
  *
- * @Débora Ramos Teixeira Souza
- * @Andrea Pereira dos Santos
- * @Carlos Eduardo
- * @Douglas Cardoso
- * @Francisco W
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *
  * @see controller.RelatorioController
  */
 public class RelatorioController {
 
-    /**
+    /**O método <b>SalvarRelatorio</b> recebe as informações da View e manda buscar dados no banco de dados através da DAO
      *
      * @param dataInicio
      * @param dataFim
@@ -48,10 +49,13 @@ public class RelatorioController {
         }//retorna Array retorno de String com valores da tabela Venda
         return retorno;
 
-        /**
-         * Método de controle
-         */
+       
     }
+    /**O método <b>RelatorioDetalheVenda</b> recebe as informações da View e manda buscar dados no banco de dados através da DAO
+     *
+     * @param idVenda
+     * @return boolean - true: lista preenchida, false: falha
+     */
 
     public static ArrayList<String[]> RelatorioDetalheVenda(int idVenda) {
         //Cria Array de Objeto Venda em listaDetalheVenda
@@ -68,10 +72,8 @@ public class RelatorioController {
                 String.valueOf(venda.getCodigo()),
                 String.valueOf(venda.getQtdVendida()),
                 String.valueOf(venda.getDatadavenda()),});
-        }//retorna Array retorno de String com valores da tabela Venda
+        }//retorna Array retorno de String com valores da tabela Detalhe Venda
         return retorno;
     }
-    /**
-     * Método de controle
-     */
+  
 }

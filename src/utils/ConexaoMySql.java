@@ -7,7 +7,14 @@ import java.sql.DriverManager;
  
 import java.sql.SQLException;
  
-  
+/*
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *
+*/  
  
 //Início da classe de conexão//
  

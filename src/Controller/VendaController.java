@@ -22,8 +22,8 @@ public class VendaController {
     /**
      *Método <b>CadastrarVenda</b> recebe as informações de cadastro contidas na View e manda gravar na base de dados
      *@param cpf 
-     *@param datavenda
-     *@param valortotal
+     *@param datadavenda
+     *@param valorTotal
      *@return retorna um inteiro informando a quantidade de linahs afetadas
      */
 

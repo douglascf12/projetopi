@@ -18,14 +18,20 @@ import utils.ConexaoMySql;
 
 /**
  *
- * @Débora Ramos Teixeira Souza
- * @Andrea Pereira dos Santos
- * @Carlos Eduardo
- * @Douglas Cardoso
- * @Francisco W
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *
  * @see DAO.RelatorioDAO
  */
 public class RelatorioDAO {
+    /**
+ * O método <b>RelatorioVenda</b> Busca tabela vendas  no Banco de Dados
+ * 
+ * @return bolean true: Busca realizada - false: falha na busca
+ */
 
     private static Connection conexao;
 
@@ -41,7 +47,7 @@ public class RelatorioDAO {
             conexao = ConexaoMySql.getConexaoMySQL();
 
             if (obj != null) {
-                //Comando de execução para banco de dados
+                //Instrução SLQ
                 addSQL = conexao.prepareStatement("Select id_venda,cpf,valor_compra,datavenda from venda where datavenda BETWEEN (?) and (?);  ");
                 //Passando para o banco valores recebidos como parâmetro
                 addSQL.setString(1, obj.getDataInicio());
@@ -69,7 +75,7 @@ public class RelatorioDAO {
             System.out.println(ex.getMessage());
             listaVenda = null;
         } finally {
-            //Liberando espaço na memoria 
+            //Liberando recursos na memoria 
             try {
                 if (addSQL != null) {
                     addSQL.close();
@@ -88,7 +94,11 @@ public class RelatorioDAO {
         // retorna listaVenda Array de objeto Venda
         return listaVenda;
     }
-
+  /**
+ * O método <b>RelatorioDetalheVenda</b> Busca tabela vendas  no Banco de Dados
+ * @param idVenda 
+ * @return bolean true: Busca realizada - false: falha na busca
+ */
     public static ArrayList<Venda> RelatorioDetalheVenda(int idVenda) {
         boolean retorno = false;
         //Cria Array de objeto Venda em listaVenda
@@ -128,7 +138,7 @@ public class RelatorioDAO {
             System.out.println(ex.getMessage());
             listaVenda = null;
         } finally {
-            //Liberando espaço na memoria 
+            //Liberando recursos na memoria 
             try {
                 if (addSQL != null) {
                     addSQL.close();

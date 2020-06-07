@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import model.Cliente;
 import utils.ConexaoMySql;
 

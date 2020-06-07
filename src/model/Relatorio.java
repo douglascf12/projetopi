@@ -7,11 +7,12 @@ package model;
 
 /**
  *
- * @Débora Ramos Teixeira Souza
- * @Andrea Pereira dos Santos
- * @Carlos Eduardo
- * @Douglas Cardoso
- * @Francisco W
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *
  * @see model.Relatorio
  */
     

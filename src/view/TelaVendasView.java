@@ -6,7 +6,6 @@
 package view;
 
 import Controller.VendaController;
-import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -16,7 +15,12 @@ import model.Produto;
 
 /**
  *
- * @author User
+ * @author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *
  */
 public class TelaVendasView extends javax.swing.JFrame {
 

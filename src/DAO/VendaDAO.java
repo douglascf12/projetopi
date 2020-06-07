@@ -16,12 +16,12 @@ import model.Produto;
 import model.Venda;
 /**
  *
- * @Débora Ramos Teixeira Souza
- * @Andrea Pereira dos Santos
- * @Carlos Eduardo
- * @Douglas Cardoso
- * @Francisco W
- * @see DAO.RelatorioDAO
+ *@author Andrea Pereira dos Santos
+ * @author Carlos Eduardo Silva
+ * @author Débora Ramos Teixeira Souza
+ * @author Douglas Cardoso Ferreira
+ * @author Francisco Washigton Almeida de Oliveira
+ *@see DAO.VendaDAO
  * 
  * Está Classe Realiza Consultas de cliente , consulta de produto e 
  * determina a quantidade de produtos , cadastrando assim a venda
@@ -82,7 +82,7 @@ public class VendaDAO {
     }
 /**
  *Metodo ConsultDadosProduto consulta produtos existentes na base de dados
- * @param codPord codigo do produto
+ * codPord codigo do produto
  * @return Objeto da classe Produto portando os dados equivalentes a view
  */
     public static Produto ConsultDadosProduto(int codProd) {
@@ -157,7 +157,7 @@ public class VendaDAO {
             instrucaoSQL.setDouble(2, pVenda.getValorTotal());
             instrucaoSQL.setString(3, pVenda.getDatadavenda());
 
-            //Exercuto a Instrução SQL
+            //Executo a Instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
             if (linhasAfetadas > 0) {
@@ -209,7 +209,7 @@ public class VendaDAO {
             instrucaoSQL.setString(2, pVenda.getCodigo());
             instrucaoSQL.setInt(3, pVenda.getIdVenda());
             instrucaoSQL.setString(4, pVenda.getQtdVendida());
-            //Exercuto a Instrução SQL
+            //Executo a Instrução SQL
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
                 JOptionPane.showMessageDialog(null, "Venda cadastrada!");

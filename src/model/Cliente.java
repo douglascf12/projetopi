@@ -5,8 +5,6 @@
  */
 package model;
 
-import java.sql.Date;
-
 /**
  *Esta classe contem a estrutura de dados para cadastrar/Alterar/exluir e pesquisar Cliente;
  * @author Andrea Pereira dos Santos
