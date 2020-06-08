@@ -33,15 +33,14 @@ public class ProdutoDAO {
             //Abrindo a conexão com o banco de dados
             conexao = ConexaoMySql.getConexaoMySQL();
             //Instrução SQL
-            addSQL = conexao.prepareStatement("INSERT INTO Produto (cod_produto,nome_produto,descricao,preco,qtd_estoque,setor) VALUES(?,?,?,?,?,?);",
+            addSQL = conexao.prepareStatement("INSERT INTO Produto (nome_produto,descricao,preco,qtd_estoque,setor) VALUES(?,?,?,?,?);",
                     Statement.RETURN_GENERATED_KEYS);
             //Adicionando parâmetros ao comando SQL
-            addSQL.setInt(1, produto.getCodigo());
-            addSQL.setString(2, produto.getNome());
-            addSQL.setString(3, produto.getDescricao());
-            addSQL.setDouble(4, produto.getValorUnit());
-            addSQL.setInt(5, produto.getQtdEstoque());
-            addSQL.setString(6, produto.getSetor());
+            addSQL.setString(1, produto.getNome());
+            addSQL.setString(2, produto.getDescricao());
+            addSQL.setDouble(3, produto.getValorUnit());
+            addSQL.setInt(4, produto.getQtdEstoque());
+            addSQL.setString(5, produto.getSetor());
             //Executando a instrução SQL
             int linhasAfetadas = addSQL.executeUpdate();
 
@@ -143,7 +142,7 @@ public class ProdutoDAO {
             addSQL.setInt(4, produto.getQtdEstoque());
             addSQL.setString(5, produto.getSetor());
             addSQL.setInt(6, produto.getCodigo());
-            //Executando a isntrução SQL
+            //Executando a instrução SQL
             int linhasAfetadas = addSQL.executeUpdate();
             
             if (linhasAfetadas > 0) {

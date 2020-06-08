@@ -25,11 +25,10 @@ public class ProdutoController {
  * @param setor
  * @return boolean true:ação cadastrar executada - false:falha no cadastro
  */    
-    public static boolean Cadastrar(int codigo, String nome, String descricao, double valorUnit, int qtdEstoque, String setor) {
+    public static boolean Cadastrar(String nome, String descricao, double valorUnit, int qtdEstoque, String setor) {
         //Criado um objeto do tipo Produto
         Produto objProduto = new Produto();
         //O objeto recebe os valores repassado no paramento da classe
-        objProduto.setCodigo(codigo);
         objProduto.setNome(nome);
         objProduto.setDescricao(descricao);
         objProduto.setValorUnit(valorUnit);
@@ -37,7 +36,7 @@ public class ProdutoController {
         objProduto.setSetor(setor);
         
         //Solicita a classe ProdutoDAO o cadatsro no banco de dados do objeto criado
-        boolean retorno = ProdutoDAO.Cadastrar(objProduto);
+         boolean retorno = ProdutoDAO.Cadastrar(objProduto);
         //retorna um boolean para saber se o objeto foi cadastrado no Bando de Dados
         return retorno;
     }

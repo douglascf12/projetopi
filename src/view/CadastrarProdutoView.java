@@ -8,7 +8,8 @@ import model.Produto;
 import utils.Validador;
 
 /**
- *Classe responsavel por pegar as informações digitadas
+ * Classe responsavel por pegar as informações digitadas
+ *
  * @author Andrea Pereira dos Santos
  * @author Carlos Eduardo Silva
  * @author Débora Ramos Teixeira Souza
@@ -17,12 +18,13 @@ import utils.Validador;
  */
 public class CadastrarProdutoView extends javax.swing.JFrame {
 
-    
     Produto objProduto; // objeto da classe cliente
     public String modoTela = "Criação";
-/**
- * O método <b>CadastrarProdutoView</b> tem como função carregar a tela de Cadastro de Produtos
- */
+
+    /**
+     * O método <b>CadastrarProdutoView</b> tem como função carregar a tela de
+     * Cadastro de Produtos
+     */
     public CadastrarProdutoView() {
         initComponents();
         setLocationRelativeTo(null); //define a posição centralizada no momento que a tela for aberta
@@ -49,8 +51,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -110,8 +110,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\img\\icons8-pesquisar-24 (1).png")); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,7 +135,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,16 +162,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastrar produto"));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Código Produto: ");
-
-        txtCodigo.setName("Código Produto"); // NOI18N
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Nome:");
@@ -208,9 +196,8 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
@@ -219,12 +206,11 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtValorUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtQtdEstoque, txtValorUnit});
@@ -232,11 +218,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,7 +240,8 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jcbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtQtdEstoque, txtValorUnit});
@@ -273,7 +256,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         });
 
         btnSair.setBackground(new java.awt.Color(153, 153, 153));
-        btnSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\img\\icons8-excluir-16.png")); // NOI18N
         btnSair.setText("Sair");
         btnSair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -406,33 +388,31 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     private void txtQtdEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdEstoqueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQtdEstoqueActionPerformed
-    
-    
+
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         //Essas variaveis são responsaveis por saber se o preenchimento dos campos está correto retornando um boolean
         boolean r1 = Validador.ValidaNomes(txtNome); //verifica se o campo nome do produto foi preenchido
         boolean r2 = Validador.ValidarDecimais(txtValorUnit); //verifica se o campo de valor unitário do produto foi preenchido
         boolean r3 = Validador.ValidarNumeros(txtQtdEstoque); //verifica se o campo de quatindade do produto foi preenchido
         boolean r4 = Validador.ValidaComboBox(jcbSetor); //verifica se o setor do produto foi selecionado
-        
-        
+
         if (modoTela == "Criação") { // inicialmente modoTela tem valor de "Criação" se em algum momento for alterado cai no else, que corresponde a alteração do produto
             if (r1 && r2 && r3 && r4) { // condição que verifica se todos os campos do produto estão preenchido
                 try {
                     // variaveis que recebem os valores preenchidos nos campos
-                    int codigo = Integer.parseInt(txtCodigo.getText());
                     String nome = txtNome.getText();
                     String descricao = txtDescricao.getText();
                     double valorUnit = Double.parseDouble(txtValorUnit.getText());
                     int qtdEstoque = Integer.parseInt(txtQtdEstoque.getText());
                     String setor = (String) jcbSetor.getSelectedItem();
-                    
+
                     //variavel que chamada a classe ProdutoController e passa os atributos do produto,
                     //para que a ProdutoController solicite a inclusão do produto no Bando de Dados, retornando true ou false
-                    boolean retorno = ProdutoController.Cadastrar(codigo, nome, descricao, valorUnit, qtdEstoque, setor);
-                    
+                    boolean retorno = ProdutoController.Cadastrar(nome, descricao, valorUnit, qtdEstoque, setor);
+
                     //condição que verifica se retorno da solicitação do cadastro do produto foi realizado
-                    if(retorno == true) {
+                    if (retorno == true) {
                         //se o retorno for true - exibe a mensagem do produto cadastro com sucesso
                         JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
                         CarregaTabela(); // solicita o recarregamento da página
@@ -447,7 +427,9 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
         } else { // faz a alteração do produto
             // variaveis que recebem os valores preenchidos nos campos
-            int codigo = Integer.parseInt(txtCodigo.getText());
+            int numeroLinha = tblPesquisarPro.getSelectedRow();
+            int codigo;
+            codigo = Integer.parseInt(tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString());
             String nome = txtNome.getText();
             String descricao = txtDescricao.getText();
             double valorUnit = Double.parseDouble(txtValorUnit.getText());
@@ -470,7 +452,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         }
 
         //Após cadastrar/alterar o produto limpa os campos
-        txtCodigo.setText(null);
         txtNome.setText(null);
         txtDescricao.setText(null);
         txtValorUnit.setText(null);
@@ -503,13 +484,13 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
         ArrayList<String[]> listaProduto;
         // Array que recebe todos os atributos do produto pesquisado
         listaProduto = ProdutoController.ConsultarProduto(txtPesquisaCodigo.getText());
-        
+
         //passo o objeto pro para a tabela da pesquisa
         DefaultTableModel modelo = (DefaultTableModel) tblPesquisarPro.getModel();
         modelo.setRowCount(0);
-        
+
         // laço que faz a adição do valor de cada produto na tabela
-        for(String[] produto : listaProduto) {
+        for (String[] produto : listaProduto) {
             modelo.addRow(new String[]{
                 produto[0],
                 produto[1],
@@ -535,15 +516,14 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             String valorUnit = tblPesquisarPro.getModel().getValueAt(numeroLinha, 3).toString();
             String qtdEstoque = tblPesquisarPro.getModel().getValueAt(numeroLinha, 4).toString();
             String setor = tblPesquisarPro.getModel().getValueAt(numeroLinha, 5).toString();
-            
+
             //recebe o(s) novo(s) valor(es) do(s) campo(s)
-            txtCodigo.setText(codigo);
             txtNome.setText(nome);
             txtDescricao.setText(descricao);
             txtValorUnit.setText(valorUnit);
             txtQtdEstoque.setText(qtdEstoque);
             jcbSetor.setSelectedItem(setor);
-            
+
             modoTela = "Alteração";
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela!");
@@ -551,18 +531,18 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
+
         String nome = (this.txtNome.getText());
-        
-        if(tblPesquisarPro.getRowCount() > 0) { //verifica se alguma linha foi selecionada
+
+        if (tblPesquisarPro.getRowCount() > 0) { //verifica se alguma linha foi selecionada
             int numeroLinha = tblPesquisarPro.getSelectedRow(); // recebe o número da linha selecionada
-            
+
             //recupera o código do produto seleciona através da linha selecionada
             int codigo = Integer.parseInt(tblPesquisarPro.getModel().getValueAt(numeroLinha, 0).toString());
-            
+
             //chama a o método Excluir da ProdutoController e passa o código do produto que foi recuperado através da linha selecionada
             boolean retorno = ProdutoController.Excluir(codigo);
-            
+
             // condição que verifica se o retorno do método Excluir da ProdutoController foi true ou false
             if (retorno == true) { // se true - exibe a mensagem que o produto foi excluido
                 JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!", "Exclusão realizada", JOptionPane.INFORMATION_MESSAGE);
@@ -574,10 +554,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecione um produto da tabela para excluir!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -626,7 +602,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -641,7 +616,6 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbSetor;
     private javax.swing.JTable tblPesquisarPro;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisaCodigo;
