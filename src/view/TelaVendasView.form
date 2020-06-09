@@ -626,6 +626,11 @@
         <Component class="javax.swing.JLabel" name="jLabel20">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\src\img\icons8-t&#xed;tulos-24 (1).png"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -633,6 +638,9 @@
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="66" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\src\img\icons8-caixa-de-selec&#xe7;&#xe3;o-seleccionada-2-24.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Finalizar venda"/>
       </Properties>
@@ -644,6 +652,9 @@
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\src\img\icons8-excluir-24 (4).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar Venda"/>
       </Properties>
@@ -677,6 +688,11 @@
     <Component class="javax.swing.JLabel" name="jLabel16">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel19">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\projetopi\src\img\icons8-centro-de-compras-100.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
