@@ -586,10 +586,11 @@ public class CadastrarClienteView extends javax.swing.JFrame {
 
         ArrayList<String[]> listaCliente;
         listaCliente = ClienteController.ConsultarCliente(txtPsqNomeCli.getText());
-        if (listaCliente.size() > 0) {
-            DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tblPesquisar.getModel();
             modelo.setRowCount(0);
 
+        if (listaCliente.size() > 0) {
+            
             for (String[] cliente : listaCliente) {
                 modelo.addRow(new String[]{
                     cliente[0],

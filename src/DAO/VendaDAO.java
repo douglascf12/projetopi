@@ -52,10 +52,11 @@ public class VendaDAO {
             // Exucutando a instrução SQL
             rs = instrucaoSQL.executeQuery();
             //  se o nome estiver na base da dados retorna o mesmo
+         
             if (rs.next()) {
                 retorno = rs.getString("nome");
             }
-
+            
         } catch (SQLException ex) {
 
             System.out.println(ex.getMessage());
