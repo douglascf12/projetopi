@@ -621,7 +621,6 @@ public class CadastrarClienteView extends javax.swing.JFrame {
                 cliente[5],
                 cliente[6], });
         }
-
     }//GEN-LAST:event_bntPsqCliActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed

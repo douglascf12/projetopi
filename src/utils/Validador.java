@@ -22,7 +22,11 @@ import javax.swing.JTextField;
  *
  */
 public class Validador {
-
+/**
+ * Verifica se o nome digitado não é Nulo e não contem números
+ * @param nomeTxt
+ * @return true: Nome preenchido, false: Nome não preenchido
+ */
     public static boolean ValidaNomes(JTextField nomeTxt) {
 
         if (nomeTxt.getText().trim().equals("")) {
@@ -34,7 +38,11 @@ public class Validador {
             return true;
         }
     }
-
+/**
+ * Verifica se o número digitado é inteiro
+ * @param pTxt
+ * @return true: número é inteiro, false: não é um inteiro
+ */
     public static boolean ValidarNumeros(JTextField pTxt) {
         try {
             if (pTxt.getText().trim().equals("")) {
@@ -53,10 +61,14 @@ public class Validador {
             return false;
         }
     }
-
+/**
+ * Verifica se o SEXO do cliente estás selecionado
+ * @param txtCombo
+ * @return true: SEXO selecionado, false: SEXO não selecionado
+ */
     public static boolean ValidaComboBox(JComboBox txtCombo) {
         String setor = (String) txtCombo.getSelectedItem();
-        if(setor=="Nenhum"){
+        if (setor == "Nenhum") {
             JOptionPane.showMessageDialog(null, "Selecione o Setor do Produto");
             return false;
         }
@@ -72,7 +84,7 @@ public class Validador {
             decimalTxt.setBackground(Color.white);
             return true;
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Falha ao converter o campo " + decimalTxt.getName() + " em decimal.");            
+            JOptionPane.showMessageDialog(null, "Falha ao converter o campo " + decimalTxt.getName() + " em decimal.");
             decimalTxt.setBackground(Color.red);
             return false;
         } catch (IllegalArgumentException e) {
@@ -81,7 +93,11 @@ public class Validador {
             return false;
         }
     }
-
+/**
+ * Retorno se o CPF é válido
+ * @param pCpf
+ * @return true: CPF válido, false: CPF Inválido.
+ */
     public static boolean ValidaCPF(JFormattedTextField pCpf) {
         String cpf = pCpf.getText().replace(".", "").replace("-", "");
         if (cpf.equals("00000000000")
@@ -147,10 +163,28 @@ public class Validador {
             return (false);
         }
     }
-
+/**
+ * Retorno o CPF digitado somente com os números
+ * @param pCpf
+ * @return 
+ */
     public static String getCpfSomenteNumeros(JFormattedTextField pCpf) {
         String cpf = pCpf.getText().replace(".", "").replace("-", "");
         return cpf;
+    }
+    /**
+     * Função que verifica se o produto tem em estoque na Quantidade solicitada
+     * @param qtdVentida
+     * @param txtEstoque
+     * @return 
+     */
+    public static boolean ValidaEstoque(JTextField qtdVentida, int txtEstoque) {        
+        if (Integer.parseInt(qtdVentida.getText())<=txtEstoque) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Produto possui apenas " + txtEstoque + " unidades em Estoque");
+            return false;
+        }
     }
 
 }

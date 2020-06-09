@@ -27,9 +27,12 @@ public class TelaVendasView extends javax.swing.JFrame {
     /**
      * Creates new form TelaVendasView
      */
+    Produto p = new Produto();
+
     public TelaVendasView() {
         initComponents();
         setLocationRelativeTo(null);
+
     }
 
     /**
@@ -199,6 +202,11 @@ public class TelaVendasView extends javax.swing.JFrame {
 
         txtValorProduto.setEditable(false);
         txtValorProduto.setName("Valor do Produto"); // NOI18N
+        txtValorProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorProdutoActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Qtd:");
 
@@ -312,8 +320,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel17.setText("R$");
 
-        jLabel21.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\img\\icons8-títulos-24 (1).png")); // NOI18N
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -372,7 +378,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         );
 
         btnFinalizarVenda.setForeground(new java.awt.Color(0, 102, 0));
-        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\img\\icons8-caixa-de-selecção-seleccionada-2-24.png")); // NOI18N
         btnFinalizarVenda.setText("Finalizar venda");
         btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,7 +386,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         });
 
         jButton6.setForeground(new java.awt.Color(255, 51, 51));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\img\\icons8-excluir-24 (4).png")); // NOI18N
         jButton6.setText("Cancelar Venda");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,8 +400,6 @@ public class TelaVendasView extends javax.swing.JFrame {
         jLabel5.setText("Tela Vendas");
 
         jLabel1.setText("______________________________________________________________________________________________________________________________________________");
-
-        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\NetBeansProjects\\projetopi\\src\\img\\icons8-centro-de-compras-100.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -431,7 +433,7 @@ public class TelaVendasView extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 920, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(331, 331, 331)
                                 .addComponent(jLabel5)
@@ -499,29 +501,52 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         double valorTotal = 0;
+        boolean produtoNoCarrinho = false;
+        //Verificando se todos os itens estão preenchidos
         boolean condicao1 = Validador.ValidaCPF(txtCPF);
         boolean condicao2 = Validador.ValidaNomes(txtNomeCliente);
         boolean condicao3 = Validador.ValidarNumeros(txtCodigoProduto);
         boolean condicao4 = Validador.ValidaNomes(txtNomeProduto);
         boolean condicao5 = Validador.ValidarDecimais(txtValorProduto);
         boolean condicao6 = Validador.ValidarNumeros(txtQuantidadeProduto);
+        boolean temEstoque = Validador.ValidaEstoque(txtQuantidadeProduto, p.getQtdEstoque());
         if (condicao1 && condicao2 && condicao3 && condicao4 && condicao5 && condicao6) {
-            DefaultTableModel modelo = (DefaultTableModel) tblCarrinhoCompras.getModel();
+            //Faço um for verificando se o já se encontra algum produto no carrinho com o mesmo código
+            int codigoProduto = Integer.parseInt(txtCodigoProduto.getText());
 
-            modelo.addRow(new Object[]{
-                String.valueOf(txtCodigoProduto.getText()),
-                String.valueOf(txtNomeProduto.getText()),
-                String.valueOf(txtValorProduto.getText()),
-                String.valueOf(txtQuantidadeProduto.getText()),
-                String.valueOf("")
-            });
-            for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
-                String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
-                String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
-                Double ValorParcial = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
-                valorTotal = valorTotal + ValorParcial;
+            for (int i = 0; i < tblCarrinhoCompras.getRowCount(); i++) {
+                int codCarrinho = Integer.parseInt(tblCarrinhoCompras.getModel().getValueAt(i, 0).toString());
+                if (codigoProduto == codCarrinho) {
+                    JOptionPane.showMessageDialog(null, "Produto já existe no carrinho.");
+                    produtoNoCarrinho = true;
+                    break;
+                }
             }
-            txtTotalVendas.setText(Double.toString(valorTotal));
+            //Verifico se um produto como o mesmo código está no carrinho
+            if (!produtoNoCarrinho) {
+                //Verifico se o Produto tem em estoque na quantidade solicitada
+                if (temEstoque) {
+                    DefaultTableModel modelo = (DefaultTableModel) tblCarrinhoCompras.getModel();
+
+                    modelo.addRow(new Object[]{
+                        String.valueOf(txtCodigoProduto.getText()),
+                        String.valueOf(txtNomeProduto.getText()),
+                        String.valueOf(txtValorProduto.getText()),
+                        String.valueOf(txtQuantidadeProduto.getText()),
+                        String.valueOf("")
+                    });
+                    /**
+                     * Calculando o total de vendas através de um laço for que soma o valor de todas as linhas
+                     */
+                    for (int numeroLinha = 0; numeroLinha < tblCarrinhoCompras.getRowCount(); numeroLinha++) {
+                        String valorUnit = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 2).toString();
+                        String qtdVendida = tblCarrinhoCompras.getModel().getValueAt(numeroLinha, 3).toString();
+                        Double ValorParcial = (Double.parseDouble(valorUnit)) * Integer.parseInt(qtdVendida);
+                        valorTotal = valorTotal + ValorParcial;
+                    }
+                    txtTotalVendas.setText(Double.toString(valorTotal));
+                }
+            }
         }
         txtCodigoProduto.setText(null);
         txtNomeProduto.setText(null);
@@ -535,19 +560,23 @@ public class TelaVendasView extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Converte o id do produto que vem como texto em um inteiro
-        int codigo = Integer.parseInt(txtCodigoProduto.getText());
-        // Cria um objeto da classe Produto
-        Produto p = new Produto();
-        // esse objeto é preenchido com com os dados equivalentes ao codigo do produto passado como parametro
-        p = VendaController.PesquisarProdutosVendas(codigo);
-        //apresenta os valores obtidos da base de dados na view
-        txtNomeProduto.setText(p.getNome());
-        txtValorProduto.setText(String.valueOf(p.getValorUnit()));
+        boolean numeroInteiro = Validador.ValidarNumeros(txtCodigoProduto);
+        if (numeroInteiro){
+            int codigo = Integer.parseInt(txtCodigoProduto.getText());
+            // Cria um objeto da classe Produto
+            // esse objeto é preenchido com com os dados equivalentes ao codigo do produto passado como parametro
+            p = VendaController.PesquisarProdutosVendas(codigo);
+            //apresenta os valores obtidos da base de dados na view
+            txtNomeProduto.setText(p.getNome());
+            txtValorProduto.setText(String.valueOf(p.getValorUnit()));
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
-/**
- * jToogleButton: Botão que remove o iten do carrinho selecionado pelo cliente
- * @param evt 
- */
+    /**
+     * jToogleButton: Botão que remove o iten do carrinho selecionado pelo
+     * cliente
+     *
+     * @param evt
+     */
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         DefaultTableModel dtm = (DefaultTableModel) tblCarrinhoCompras.getModel();
         if (tblCarrinhoCompras.getSelectedRow() >= 0) {
@@ -561,10 +590,12 @@ public class TelaVendasView extends javax.swing.JFrame {
     private void txtTotalVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVendasActionPerformed
 
     }//GEN-LAST:event_txtTotalVendasActionPerformed
-/**
- * btnFinalizarVenda: Botão responsável por passar os dados da venda para a Controller
- * @param evt 
- */
+    /**
+     * btnFinalizarVenda: Botão responsável por passar os dados da venda para a
+     * Controller
+     *
+     * @param evt
+     */
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
         Double ValorTotal;
         int id_venda = 0;
@@ -573,8 +604,8 @@ public class TelaVendasView extends javax.swing.JFrame {
         if (tblCarrinhoCompras.getRowCount() > 0) {
             //Verifico se a data está preenchida
             if (dateDataVenda.getDate() != null) {
-                dateDataVenda.setBackground(Color.white);                
-                ValorTotal=Double.parseDouble(txtTotalVendas.getText());
+                dateDataVenda.setBackground(Color.white);
+                ValorTotal = Double.parseDouble(txtTotalVendas.getText());
                 String cpf = Validador.getCpfSomenteNumeros(txtCPF);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String dataVenda = sdf.format(dateDataVenda.getDate());
@@ -605,6 +636,10 @@ public class TelaVendasView extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
+
+    private void txtValorProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorProdutoActionPerformed
 
     /**
      * @param args the command line arguments

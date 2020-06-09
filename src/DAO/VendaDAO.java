@@ -99,7 +99,7 @@ public class VendaDAO {
             conexao = ConexaoMySql.getConexaoMySQL();
             if (codProd != 0) {
                 // Instrução SQL consultando os dados necessarios para a view 
-                instrucaoSQL = conexao.prepareStatement("SELECT nome_produto,preco FROM produto where cod_produto LIKE ?");  //Caso queira retornar o ID
+                instrucaoSQL = conexao.prepareStatement("SELECT nome_produto,preco, qtd_estoque FROM produto where cod_produto LIKE ?");  //Caso queira retornar o ID
                 instrucaoSQL.setString(1, "%" + codProd + '%');
             }
             
@@ -110,6 +110,7 @@ public class VendaDAO {
                 // Adiciona nomedoproduto e o preço ai objeto
                 p.setNome(rs.getString("nome_produto"));
                 p.setValorUnit(rs.getDouble("preco"));
+                p.setQtdEstoque(rs.getInt("qtd_estoque"));
             }
 
         } catch (SQLException ex) {
